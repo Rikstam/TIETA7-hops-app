@@ -1,0 +1,21 @@
+{
+  "name": "tiko-app",
+  "version": "0.0.0",
+  "authors": [
+    "Riku Kestilä <rikukestila@gmail.com>"
+  ],
+  "description": "Coursework for database programming course.",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.4"
+  }
+}
