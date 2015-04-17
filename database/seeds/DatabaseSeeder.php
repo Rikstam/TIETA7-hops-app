@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class DatabaseSeeder extends Seeder {
 
@@ -31,7 +32,7 @@ class UserTableSeeder extends Seeder {
 					'lastName'=> 'Pena',
 					'telephone'=> '343434343',
 					'address' => 'katu 5',
-					'studentNumber' => '00005',
+					'studentNumber' => '555545',
 					'email' => 'pepsi.pena@gmail.com',
 					'password' => bcrypt('jaffamies')
 					)
@@ -43,7 +44,7 @@ class UserTableSeeder extends Seeder {
 					'lastName'=> 'Pena',
 					'telephone'=> '343434343',
 					'address' => 'katu 5',
-					'studentNumber' => '00005',
+					'studentNumber' => '5555',
 					'email' => 'pepsi.pen5a@gmail.com',
 					'password' => bcrypt('jaffamies')
 					)
@@ -55,7 +56,7 @@ class UserTableSeeder extends Seeder {
 					'lastName'=> 'Pena',
 					'telephone'=> '34343432433',
 					'address' => 'katu 52',
-					'studentNumber' => '000052',
+					'studentNumber' => '24534552',
 					'email' => 'pepsi.pena2@gmail.com',
 					'password' => bcrypt('jaffamies')
 					)
@@ -67,7 +68,7 @@ class UserTableSeeder extends Seeder {
 					'lastName'=> 'Pena',
 					'telephone'=> '343434343',
 					'address' => 'katu 53',
-					'studentNumber' => '000053',
+					'studentNumber' => '12353',
 					'email' => 'pepsi.pena3@gmail.com',
 					'password' => bcrypt('jaffamies')
 					)
@@ -81,7 +82,7 @@ class UserTableSeeder extends Seeder {
 					'address' => 'katu 53',
 					'email' => 'timo.tuutori@gmail.com',
 					'password' => bcrypt('jaffamies'),
-					'role'		=> 'tutor'
+					'role'		=> 'teacher-tutor'
 					)
 				);
 
@@ -94,7 +95,7 @@ class UserTableSeeder extends Seeder {
 
 					'email' => 'yrjo@gmail.com',
 					'password' => bcrypt('jaffamies'),
-					'role' => 'admin'
+					'role' => 'master-tutor'
 					)
 				);
 
