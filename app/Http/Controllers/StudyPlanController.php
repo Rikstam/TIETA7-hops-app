@@ -24,8 +24,30 @@ class StudyPlanController extends Controller {
 	 */
 	public function create()
 	{
-		$subjects = ['Bioteknologian tutkinto-ohjelma', 'Tietojenkäsittelytieteiden tutkinto-ohjelma', 'Matematiikan ja tilastotieteen tutkinto-ohjelma','Informaatiotutkimuksen ja interaktiivisen median tutkinto-ohjelma'];
-		return view('studyplans.create', compact('subjects'));
+		$numberOfAutumnInputs = 5;
+		$numberOfSpringInputs = 5;
+
+
+		$creditsAmounts = [
+			1 => 1,
+			2 => 2,
+			3 => 3,
+			4 => 4,
+			5 => 5,
+			6 => 6,
+			7 => 7,
+			8 => 8,
+			9 => 9,
+			10 => 10
+		];
+
+		$subjects = [
+			'Tietojenkäsittelytieteiden tutkinto-ohjelma' => 'Tietojenkäsittelytieteiden tutkinto-ohjelma',
+			'Bioteknologian tutkinto-ohjelma' => 'Bioteknologian tutkinto-ohjelma',
+			'Matematiikan ja tilastotieteen tutkinto-ohjelma' =>'Matematiikan ja tilastotieteen tutkinto-ohjelma',
+			'Informaatiotutkimuksen ja interaktiivisen median tutkinto-ohjelma'=>'Informaatiotutkimuksen ja interaktiivisen median tutkinto-ohjelma'
+			];
+		return view('studyplans.create', compact('subjects', 'creditsAmounts', 'numberOfAutumnInputs', 'numberOfSpringInputs' ));
 	}
 
 	/**

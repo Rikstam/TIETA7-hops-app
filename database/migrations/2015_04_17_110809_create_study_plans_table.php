@@ -23,7 +23,11 @@ class CreateStudyPlansTable extends Migration {
 			$table->boolean('is_active')->default(true);
 			$table->boolean('has_job')->default(false);
 			$table->text('job_description')->nullable();
+			$table->text('job_type')->nullable();
+
 			$table->integer('job_hours')->nullable();
+			$table->integer('job_explanation')->nullable();
+
 			$table->text('interest_in_own_field')->nullable();
 			$table->text('optional_interest')->nullable();
 
