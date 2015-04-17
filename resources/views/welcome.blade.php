@@ -1,7 +1,7 @@
 <html>
 	<head>
-		<title>Laravel</title>
-		
+		<title>Henkilökohtainen opintosuunnitelma</title>
+
 		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
 		<style>
@@ -40,8 +40,13 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
-				<div class="quote">{{ Inspiring::quote() }}</div>
+				<div class="title">Henkilökohtainen opintosuunnitelma</div>
+
+			<div class="">
+				<a href="auth/login">Kirjaudu sisään</a> tai <a href="auth/register">Rekisteröidy</a>
+
+			</div>
+
 			</div>
 		</div>
 	</body>
