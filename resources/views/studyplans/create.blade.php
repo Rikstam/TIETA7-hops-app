@@ -18,10 +18,14 @@
 
   {!! Form::model($studyplan = new \App\Studyplan, ['url'=>'studyplans'])!!}
     <div class = "row">
+
       <div class = "form-group col-md-4">
-        {!! Form::label('academic_year', 'Lukuvuosi:') !!}
-        {!! Form::select('academic_year_start',['2014 - 2015','2015 - 2016','2016 - 2017'], null, ['class'=>'form-control']) !!}
+        {!! Form::label('academic_year', 'Lukuvuosi') !!}
+        {!! Form::select('academic_year',$academicYears, null, ['class'=>'form-control']) !!}
       </div>
+
+
+
     </div>
 
   <h2>Opintosuunnitelmani</h2>
@@ -30,22 +34,41 @@
 
     @for ($i = 0; $i < $numberOfAutumnInputs; $i++)
 
-    <div class = "row">
+    <div class = "row autumnModule">
 
       <div class = "form-group col-md-5">
-        {!! Form::label('name', 'Opintojakson nimi') !!}
-        {!! Form::text('name', null, ['class'=>'form-control']) !!}
+        {!! Form::label('module_name', 'Opintojakson nimi') !!}
+        {!! Form::text('module_name[]', null, ['class'=>'form-control module_name']) !!}
       </div>
 
       <div class = "form-group col-md-2">
         {!! Form::label('credits', 'Opintopisteitä') !!}
-        {!! Form::select('credits', $creditsAmounts, null, ['class'=>'form-control']) !!}
+
+        <select name = "credits[]" class ="form-control credits-select">
+          <option selected disabled>Valitse</option>
+            @foreach($creditsAmounts as $creditAmount)
+            <option value="{{ $creditAmount }}">{{ $creditAmount }}</option>
+            @endforeach
+        </select>
+
       </div>
 
       <div class = "form-group col-md-5">
         {!! Form::label('subject', 'Oppiaine') !!}
-        {!! Form::select('subject',$subjects,null, ['class'=>'form-control']) !!}
+
+        <select name = "subject[]" class ="form-control subject-select ">
+          <option selected disabled>Valitse seuraavista</option>
+            @foreach($subjects as $subject)
+            <option value="{{ $subject }}">{{ $subject }}</option>
+            @endforeach
+        </select>
+
       </div>
+
+
+
+        {!! Form::input('hidden','semester_name[]','autumn') !!}
+
 
     </div>
 
@@ -62,24 +85,35 @@
 
   @for ($i = 0; $i < $numberOfSpringInputs; $i++)
 
-  <div class = "row">
+  <div class = "row springModule">
 
     <div class = "form-group col-md-5">
-      {!! Form::label('name', 'Opintojakson nimi') !!}
-      {!! Form::text('name', null, ['class'=>'form-control']) !!}
+      {!! Form::label('module_name', 'Opintojakson nimi') !!}
+      {!! Form::text('module_name[]', null, ['class'=>'form-control module_name']) !!}
     </div>
 
     <div class = "form-group col-md-2">
       {!! Form::label('credits', 'Opintopisteitä') !!}
-      {!! Form::select('credits', $creditsAmounts, null, ['class'=>'form-control']) !!}
+      <select name = "credits[]" class ="form-control credits-select">
+        <option selected disabled>Valitse</option>
+          @foreach($creditsAmounts as $creditAmount)
+          <option value="{{ $creditAmount }}">{{ $creditAmount }}</option>
+          @endforeach
+      </select>
     </div>
 
     <div class = "form-group col-md-5">
       {!! Form::label('subject', 'Oppiaine') !!}
-      {!! Form::select('subject',$subjects,null, ['class'=>'form-control']) !!}
+      <select name = "subject[]" class ="form-control subject-select">
+        <option selected disabled>Valitse seuraavista</option>
+          @foreach($subjects as $subject)
+          <option value="{{ $subject }}">{{ $subject }}</option>
+          @endforeach
+      </select>
     </div>
 
   </div>
+  {!! Form::input('hidden','semester_name[]','spring') !!}
 
   @endfor
   <hr>
@@ -88,19 +122,22 @@
 
   <div class = "row">
     <div class = "col-md-12">
+
       <div class="radio">
         <label>
-          <input type="radio" name="has_job" id="has_job_true" value="true" checked>
-          Olen töissä lukuvuoden aikana.
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="has_job" id="has_job_false" value="false">
+          <input type="radio" name="has_job" id="has_job_false" value="false" checked>
           En ole töissä lukuvuoden aikana.
         </label>
       </div>
-    </div>
+
+      <div class="radio">
+        <label>
+          <input type="radio" name="has_job" id="has_job_true" value="true">
+          Olen töissä lukuvuoden aikana.
+        </label>
+      </div>
+
+  </div>
 
     <div class = "col-md-12">
       <div class="form-group">
@@ -112,7 +149,15 @@
 
       <div class="form-group">
       {!! Form::label('job_type', 'Työn laatu:') !!}
-      {!! Form::select('job_type',['kokopäivätyö'=>'kokopäivätyö', 'osa-aikatyö'=>'osa-aikatyö'], null, ['class'=>'form-control']) !!}
+
+        <select name = "job_type" class ="form-control">
+          <option selected disabled>Valitse seuraavista</option>
+
+          <option value="kokopäivätyö">kokopäivätyö</option>
+          <option value="osa-aikatyö">osa-aikatyö</option>
+
+
+        </select>
       </div>
 
       <div class="form-group">
@@ -125,7 +170,7 @@
     <div class = "form-group col-md-12">
 
             {!! Form::label('job_explanation', 'Perusteluni sille, että olen / en ole töissä:') !!}
-            {!! Form::textarea('job_explanation', null, ['class'=>'form-control']) !!}
+            {!! Form::textarea('job_explanation', null, ['id' => 'job-explanation', 'class'=>'form-control']) !!}
 
     </div>
 
@@ -138,13 +183,13 @@
   <div class  = "row">
     <div class = "col-md-12">
       {!! Form::label('positive_feedback', 'Edellisen vuoden hyviä asioita olivat:') !!}
-      {!! Form::textarea('positive_feedback', null, ['class'=>'form-control']) !!}
+      {!! Form::textarea('positive_feedback', null, ['id'=>'positive-feedback','class'=>'form-control']) !!}
 
     </div>
 
     <div class = "col-md-12">
       {!! Form::label('negative_feedback', 'Edellisenä vuonna seuraavat asiat eivät sujuneet odotusteni mukaisesti:') !!}
-      {!! Form::textarea('negative_feedback', null, ['class'=>'form-control']) !!}
+      {!! Form::textarea('negative_feedback', null, ['id'=>'negative-feedback','class'=>'form-control']) !!}
 
     </div>
 
@@ -155,7 +200,7 @@
     <div class = "col-md-12">
 
     {!! Form::label('interest_in_own_field', 'Aiheet:') !!}
-    {!! Form::textarea('interest_in_own_field', null, ['class'=>'form-control']) !!}
+    {!! Form::textarea('interest_in_own_field', null, ['id'=>'interest-in-own-field','class'=>'form-control']) !!}
 
     </div>
   </div>
@@ -165,7 +210,7 @@
     <div class = "col-md-12">
 
     {!! Form::label('optional_interest', 'Aiheet:') !!}
-    {!! Form::textarea('optional_interest', null, ['class'=>'form-control']) !!}
+    {!! Form::textarea('optional_interest', null, ['id' => 'optional-interest','class'=>'form-control']) !!}
 
     </div>
   </div>
@@ -176,7 +221,7 @@
   </p>
 </div>
 
-
+  {!! Form::input('hidden', 'user_id', 1)!!}
 
   <div class = "form-group">
   {!! Form::submit('Tallenna', ['class'=> 'btn btn-primary form-control']) !!}
