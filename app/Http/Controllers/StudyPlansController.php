@@ -6,16 +6,23 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Studyplan;
 use App\Studymodule;
+use Auth;
 
 use Illuminate\Http\Request;
 
-class StudyPlanController extends Controller {
+class StudyPlansController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	public function index()
 	{
 		return User::with('studyplans.studymodules')->get();
@@ -67,7 +74,7 @@ class StudyPlanController extends Controller {
 	{
 		$input = $request->all();
 
-		$user = User::findOrfail($input['user_id']);
+		$user = Auth::user();
 
 		$studyPlan =  new Studyplan(
 			array(
@@ -127,7 +134,7 @@ class StudyPlanController extends Controller {
 
 		$studyPlan->studymodules()->saveMany($allStudyModules);
 	//	return $input;
-		return $user->studyplans;
+		return redirect('home');
 	}
 
 	/**

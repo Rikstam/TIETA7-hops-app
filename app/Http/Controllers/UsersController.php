@@ -6,7 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 
-class UserController extends Controller {
+class UsersController extends Controller {
+
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -15,7 +21,10 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		return User::all();
+		//return User::all();
+
+		return User::with('studyplans.studymodules')->get();
+
 	}
 
 	/**
@@ -46,7 +55,10 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+
+		$user = Auth::user();
+
+		return view('users.profile', compact('user'));
 	}
 
 	/**
@@ -68,7 +80,8 @@ class UserController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+
+
 	}
 
 	/**

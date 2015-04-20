@@ -19,6 +19,7 @@ class AuthController extends Controller {
 	*/
 
 	use AuthenticatesAndRegistersUsers;
+
 	protected $redirectTo = '/home';
 
 	/**

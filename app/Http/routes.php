@@ -15,9 +15,12 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('users', 'UserController@index');
+Route::get('users', 'UsersController@index');
 
-Route::get('users/profile/{$id}', 'UserController@show');
+Route::get('profile/{$id}', 'UsersController@show');
+
+Route::get('admin', 'AdminController@adminpanel');
+Route::post('admin','AdminController@allocateStudents');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -25,4 +28,4 @@ Route::controllers([
 ]);
 
 
-Route::resource('studyplans', 'StudyPlanController');
+Route::resource('studyplans', 'StudyPlansController');

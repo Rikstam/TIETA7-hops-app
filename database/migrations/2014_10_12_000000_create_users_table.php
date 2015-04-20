@@ -23,10 +23,13 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->string('password', 60);
 			$table->integer('studentNumber')->unique()->nullable();
-			$table->integer('tutor_id')->nullable();
+
 			$table->string('role', 50)->default('student');
 			$table->rememberToken();
 			$table->timestamps();
+
+			$table->integer('tutor_id')->nullable();
+			$table->foreign('tutor_id')->references('id')->on('users');
 		});
 	}
 

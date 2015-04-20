@@ -36,4 +36,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('App\Studyplan');
 	}
 
+	public function tutored_students(){
+		return $this->hasMany('App\User','tutor_id');
+	}
+
+
+	public function scopeStudents($query){
+		$query->where('role', '=', 'student')->get();
+	}
+
+	public function scopeTeachertutors($query){
+		$query->where('role', '=', 'teacher-tutor')->get();
+	}
+
 }
