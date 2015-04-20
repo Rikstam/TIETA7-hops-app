@@ -56,9 +56,11 @@ class UsersController extends Controller {
 	public function show($id)
 	{
 
-		$user = Auth::user();
 
-		return view('users.profile', compact('user'));
+		$user =  User::findOrFail($id);
+		$user_data  = $user->studyplans()->with('studymodules')->get();
+		return 	$user_data;
+		//return view('users.profile', compact('user'));
 	}
 
 	/**

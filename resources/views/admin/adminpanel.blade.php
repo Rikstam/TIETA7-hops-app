@@ -20,7 +20,7 @@ Name
 Email
     </th>
     <th>
-      Students
+      Opiskelijat
     </th>
   </tr>
 </thead>
@@ -29,7 +29,7 @@ Email
             <tr>
 
             <td>
-              {{$tutor->firstName}}
+              {{$tutor->firstName}} {{$tutor->lastName}}
             </td>
             <td>
               {{$tutor->email}}
@@ -41,18 +41,16 @@ Email
 
               @foreach($tutor->tutored_students as $tutored_student)
                 <li>
-              {{$tutored_student->firstName}}
-              {{$tutored_student->firstName}}
+              <a href = 'profile/{{$tutored_student->id}}'> {{$tutored_student->firstName}} {{$tutored_student->lastName}}</a>
                 </li>
               @endforeach
 
             </ul>
             </td>
             <td>
-              <h3>Valitse tuutorille opiskelijat tästä</h3>
-              {!! Form::open(array('url'=>'admin')) !!}
+              <h4>Valitse tuutorille {{$tutor->firstName}} {{$tutor->lastName}} opiskelijat tästä</h4>
+              {!! Form::open(array('url'=>'admin', 'class'=> 'assignTutorForm')) !!}
 
-              {{--{!! Form::select('tutored_students[]', $students, null, ['id'=>'student_list','class' => 'form-control', 'multiple'])!!} --}}
 
               <select name = "tutored_students[]" class ="form-control credits-select" multiple>
                 <option selected disabled>Valitse</option>

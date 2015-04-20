@@ -171,9 +171,7 @@
 
 		</table>
 
-
-
-				@endforeach
+@endforeach
 				<a href="studyplans/create" class ="btn btn-primary">Täytä uusi lomake</a>
 			@endunless
 

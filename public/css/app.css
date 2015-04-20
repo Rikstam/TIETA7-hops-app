@@ -4849,5 +4849,10 @@ button.close {
 div#form-bottom-notice {
   margin-top: 20px; }
 
+.assignTutorForm select[multiple], .assignTutorForm select[size] {
+  height: 200px; }
+.assignTutorForm .btn {
+  margin-top: 20px; }
+
 
 /*# sourceMappingURL=app.css.map */
