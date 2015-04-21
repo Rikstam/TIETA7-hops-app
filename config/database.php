@@ -2,10 +2,17 @@
 
 if ($app->environment('heroku')){
 
-	$default = 'herokupgsql';
-} else{
-	$default = 'pgsql';
-}
+	//$default = 'herokupgsql';
+	$app_env_heroku = true;
+	$url = parse_url(getenv("HEROKU_POSTGRESQL_ORANGE_URL"));
+
+	$host = $url['host'];
+	$username = $url['user'];
+	$password = $url['pass'];
+	$database = substr($url['path'], 1);
+
+
+} 
 
 return [
 
@@ -33,7 +40,7 @@ return [
 	|
 	*/
 
-	'default' => $default,
+	'default' => 'pgsql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -51,7 +58,18 @@ return [
 	|
 	*/
 
+
 	'connections' => [
+		'herokupgsql' => [
+		'driver'   => 'pgsql',
+		'host'     =>  $host,
+		'database' =>  $database,
+		'username' =>  $username,
+		'password' =>  $password,
+		'charset'  => 'utf8',
+		'prefix'   => '',
+		'schema'   => 'public',
+		],
 
 		'sqlite' => [
 			'driver'   => 'sqlite',
@@ -73,10 +91,10 @@ return [
 
 		'pgsql' => [
 			'driver'   => 'pgsql',
-			'host'     => env('DB_HOST', 'localhost'),
-			'database' => env('DB_DATABASE', 'forge'),
-			'username' => env('DB_USERNAME', 'forge'),
-			'password' => env('DB_PASSWORD', ''),
+			'host'     => $app_env_heroku ? $host : env('DB_HOST', 'localhost'),
+			'database' => $app_env_heroku ? $database : env('DB_DATABASE', 'forge'),
+			'username' => $app_env_heroku ? $username : env('DB_USERNAME', 'forge'),
+			'password' => $app_env_heroku ? $password : env('DB_PASSWORD', ''),
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
