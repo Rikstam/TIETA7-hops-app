@@ -71,9 +71,9 @@
 			@unless ( $user_data->isEmpty() )
 			<h2>Opintosuunnitelmasi</h2>
 
-				@foreach ($user_data as $studyplan)
+				@foreach ($user_data as $key => $studyplan)
 
-				<h3>Lukukausi {{$studyplan->academic_year}}</h3>
+				<h3>{{$key + 1}}. Lukukausi {{$studyplan->academic_year}}</h3>
 				<p>
 					Aiotut opintosuoritukset
 				</p>
@@ -95,6 +95,9 @@
 					<th>
 						Oppiaine
 					</th>
+					<th>
+						Suoritettu?
+					</th>
 				</tr>
 				</thead>
 
@@ -113,6 +116,9 @@
 
 							<td>
 								{{$studymodule->subject}}
+							</td>
+							<td>
+
 							</td>
 
 						</tr>
@@ -142,6 +148,10 @@
 				<th>
 					Oppiaine
 				</th>
+
+				<th>
+					Suoritettu?
+				</th>
 			</tr>
 			</thead>
 
@@ -160,6 +170,9 @@
 
 						<td>
 							{{$studymodule->subject}}
+						</td>
+						<td>
+
 						</td>
 
 					</tr>
