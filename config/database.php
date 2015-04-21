@@ -1,5 +1,10 @@
 <?php
 
+$host = '';
+$username = '';
+$password = '';
+$database = '';
+$app_env_heroku = false;
 if ($app->environment('heroku')){
 
 	//$default = 'herokupgsql';
@@ -12,7 +17,7 @@ if ($app->environment('heroku')){
 	$database = substr($url['path'], 1);
 
 
-} 
+}
 
 return [
 
