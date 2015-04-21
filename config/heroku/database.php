@@ -1,4 +1,6 @@
 <?php
+echo $app->environment();
+
 if ($app->environment('heroku')){
 $url = parse_url(getenv("HEROKU_POSTGRESQL_ORANGE_URL"));
 
