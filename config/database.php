@@ -1,5 +1,12 @@
 <?php
 
+if ($app->environment('heroku')){
+
+	$default = 'herokupgsql';
+} else{
+	$default = 'pgsql';
+}
+
 return [
 
 	/*
@@ -26,7 +33,7 @@ return [
 	|
 	*/
 
-	'default' => 'pgsql',
+	'default' => $default,
 
 	/*
 	|--------------------------------------------------------------------------

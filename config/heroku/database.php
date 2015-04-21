@@ -1,5 +1,4 @@
 <?php
-echo $app->environment();
 
 if ($app->environment('heroku')){
 $url = parse_url(getenv("HEROKU_POSTGRESQL_ORANGE_URL"));
@@ -15,12 +14,12 @@ return [
 
 	'connections' => [
 
-      'pgsql' => [
+      'herokupgsql' => [
 			'driver'   => 'pgsql',
 			'host'     =>  $host,
-			'database' => $database,
-			'username' => $username,
-			'password' => $password,
+			'database' =>  $database,
+			'username' =>  $username,
+			'password' =>  $password,
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
