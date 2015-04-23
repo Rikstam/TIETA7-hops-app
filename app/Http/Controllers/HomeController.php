@@ -38,14 +38,12 @@ class HomeController extends Controller {
 		$user_data = $user->studyplans()->with('studymodules')->get();
 
 		//dd($user_data);
-
+/*
 		$user_data->each(function($ud){
 			$credits = $ud->studymodules->filter(function($studymodule){
 				return $studymodule->accomplished && $studymodule->semester_name == 'autumn';
 
-				$credits->each(function($m){
-					dd($m->credits);
-				});
+
 
 			});
 			//dd($credits);
@@ -56,10 +54,10 @@ class HomeController extends Controller {
 			});
 
 		});
+*/
 
 
-
-		return $user_data;
+	//	return $user_data;
 		return view('home', compact('user', 'user_data','accomplished_credits'));
 	}
 
