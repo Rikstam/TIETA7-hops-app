@@ -14,9 +14,12 @@ class Studymodule extends Model {
 		'semester_year'
 	];
 
+
+
 	public function studyplan()
 	{
 		return $this->belongsTo('App\Studyplan');
 	}
+
 
 }

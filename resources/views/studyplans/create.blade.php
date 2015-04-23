@@ -4,7 +4,7 @@
 <div class ="container">
 
   <div class ="col-md-8 col-md-offset-2">
-    <h1>HOPS-Kysely lukuvuodelle 1</h1>
+    <h1>HOPS-Kysely lukuvuodelle {{ $existingStudyplans + 1 }}</h1>
 
     <div class="alert alert-info" role="alert">
       <p>
@@ -162,7 +162,8 @@
 
       <div class="form-group">
       {!! Form::label('job_hours', 'Työn määrä tunneissa per viikko:') !!}
-      {!! Form::input('number','job_hours', null, ['class'=>'form-control', 'min' => '0']) !!}
+      <input type="number" name="job_hours" min="0" max="100" step="1" value="0">
+
       </div>
 
     </div>
@@ -177,9 +178,55 @@
   </div>
 
   <hr>
-
+  @unless ($existingStudyplans == 0)
   <h3>Katsaus edelliseen lukuvuoteen!</h3>
+  <h4>Edellisenä lukuvuonna sain suoritettua seuraavat opinnot (valitse)</h4>
+  <table class ="table">
+    <thead>
+      <tr>
+        <th>
+          Nimi
+        </th>
 
+        <th>
+          Opintopisteitä
+        </th>
+        <th>
+          Oppiaine
+        </th>
+
+        <th>
+          Suoritettu?
+        </th>
+      </tr>
+    </thead>
+  <tbody>
+
+
+  @foreach ($previousYearStudies->studymodules as $previousstudymodule)
+<tr>
+  <td>
+    {{$previousstudymodule->module_name}}
+  </td>
+<td>
+  {{$previousstudymodule->credits}}
+</td>
+<td>
+  {{$previousstudymodule->subject}}
+</td>
+<td>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name ="studymodules_completed[]" value ="{{$previousstudymodule->id}}"> Suoritettu?
+    </label>
+  </div>
+</td>
+</tr>
+
+
+  @endforeach
+</tbody>
+</table>
   <div class  = "row">
     <div class = "col-md-12">
       {!! Form::label('positive_feedback', 'Edellisen vuoden hyviä asioita olivat:') !!}
@@ -194,6 +241,7 @@
     </div>
 
   </div>
+  @endunless
 
   <h3>Tietojenkäsittelytieteissä minua tällä hetkellä kiinnostavat erityisesti seuraavat aiheet ja/tai alueet</h3>
   <div class = "row">
@@ -222,6 +270,8 @@
 </div>
 
   {!! Form::input('hidden', 'user_id', 1)!!}
+
+  <a href="/home" class = "btn btn-info">Peruuta</a>
 
   <div class = "form-group">
   {!! Form::submit('Tallenna', ['class'=> 'btn btn-primary form-control']) !!}

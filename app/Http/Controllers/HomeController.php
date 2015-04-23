@@ -35,11 +35,32 @@ class HomeController extends Controller {
 	public function index()
 	{
 		$user =  Auth::user();//->with('studyplans.studymodules')->get();
-		$user_data  = $user->studyplans()->with('studymodules')->get();
+		$user_data = $user->studyplans()->with('studymodules')->get();
+
+		//dd($user_data);
+
+		$user_data->each(function($ud){
+			$credits = $ud->studymodules->filter(function($studymodule){
+				return $studymodule->accomplished && $studymodule->semester_name == 'autumn';
+
+				$credits->each(function($m){
+					dd($m->credits);
+				});
+
+			});
+			//dd($credits);
+			$ud->springtotals = 0;
+
+			$ud->autumntotals = $ud->studymodules->filter(function($studymodule){
+				return $studymodule->accomplished && $studymodule->semester_name == 'spring';
+			});
+
+		});
 
 
-		//return $user_data;
-		return view('home', compact('user', 'user_data'));
+
+		return $user_data;
+		return view('home', compact('user', 'user_data','accomplished_credits'));
 	}
 
 }

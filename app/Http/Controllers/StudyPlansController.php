@@ -35,6 +35,17 @@ class StudyPlansController extends Controller {
 	 */
 	public function create()
 	{
+
+		$user = Auth::user();
+
+		$existingStudyplans = $user->studyplans->count();
+		if (	$existingStudyplans > 0) {
+
+			$previousYearStudies = $user->studyplans()->orderBy('created_at', 'desc')->with('studymodules')->first();
+
+
+		}
+
 		$numberOfAutumnInputs = 2;
 		$numberOfSpringInputs = 2;
 
@@ -62,7 +73,8 @@ class StudyPlansController extends Controller {
 			'Bioteknologian tutkinto-ohjelma'
 		];
 
-		return view('studyplans.create', compact('subjects', 'creditsAmounts', 'numberOfAutumnInputs', 'numberOfSpringInputs', 'academicYears' ));
+			return view('studyplans.create', compact('subjects', 'creditsAmounts', 'numberOfAutumnInputs', 'numberOfSpringInputs', 'academicYears', 'existingStudyplans','previousYearStudies' ));
+
 	}
 
 	/**
@@ -76,16 +88,30 @@ class StudyPlansController extends Controller {
 
 		$user = Auth::user();
 
+		//TODO replace these with proper validations
+		$positiveFeedback = isset($input['positive_feedback']) ? $input['positive_feedback'] : null;
+		$negativeFeedback = isset($input['negative_feedback']) ? $input['negative_feedback'] : null;
+
+		$jobDescription = isset($input['job_description']) ? $input['job_description'] : null;
+		$jobType = isset($input['job_type']) ? $input['job_type'] : null;
+		$jobHours = isset($input['job_hours']) ? $input['job_hours'] : null;
+
+		$studyModulesCompleted = isset($input['studymodules_completed']) ? $input['studymodules_completed'] : null;
+
+		if (isset($studyModulesCompleted) ) {
+		$this->updateLastYearsModules($studyModulesCompleted );
+		}
+
 		$studyPlan =  new Studyplan(
 			array(
-			'positive_feedback' => $input['positive_feedback'],
-			'negative_feedback' => $input['negative_feedback'],
+			'positive_feedback' => $positiveFeedback,
+			'negative_feedback' => $negativeFeedback,
 			'academic_year' => $input['academic_year'],
 
 			'has_job' => $input['has_job'],
-			'job_description'  => $input['job_description'],
-			'job_type' => $input['job_type'] ,
-			'job_hours' => $input['job_hours'],
+			'job_description'  => $jobDescription,
+			'job_type' => $jobType,
+			'job_hours' => $jobHours,
 			'job_explanation' => $input['job_explanation'],
 			'interest_in_own_field' => $input['interest_in_own_field'],
 			'optional_interest' => $input['optional_interest']
@@ -107,8 +133,8 @@ class StudyPlansController extends Controller {
 
 		$moduleCount = count($modules['names']);
 
-		//dd($semesterYears);
 
+		//return $input;
 		$studyPlan = $user->studyplans()->save($studyPlan);
 
 		$allStudyModules = [];
@@ -123,7 +149,7 @@ class StudyPlansController extends Controller {
 					'subject' => $modules['subjects'][$i],
 					'semester_name' => $modules['semesters'][$i],
 					'semester_year' => $modules['semesters'][$i] == 'autumn' ? $semesterYears[0] : $semesterYears[1],
-					//'studyplan_id'  => $studyPlan->id
+
 					)
 				)
 			);
@@ -179,6 +205,16 @@ class StudyPlansController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	private function updateLastYearsModules(Array $studyModulesCompleted){
+
+			foreach (	$studyModulesCompleted as $studyModuleId) {
+					$studyModuleToUpdate = Studymodule::find($studyModuleId);
+					$studyModuleToUpdate->accomplished = true;
+					$studyModuleToUpdate->save();
+			}
+
 	}
 
 }

@@ -32,4 +32,5 @@ class Studyplan extends Model {
 			return $this->hasMany('\App\Studymodule');
 	}
 
+
 }

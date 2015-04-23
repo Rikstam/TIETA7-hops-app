@@ -21,8 +21,8 @@ class CreateStudyModulesTable extends Migration {
 		$table->string('module_name', 255);
 		$table->string('subject', 255);
 		$table->enum('semester_name', ['autumn', 'spring']);
-		$table->integer('credits');
-		$table->date('accomplished')->nullable();
+		$table->decimal('credits', 5 , 1);
+		$table->boolean('accomplished')->default(false);
 		$table->integer('semester_year');
 		//$table->date('planned_accomplishment');
 

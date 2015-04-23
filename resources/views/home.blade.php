@@ -16,6 +16,7 @@
 			<table class = "table">
 				<thead>
 					<tr>
+
 						<th>
 							Etunimi
 						</th>
@@ -25,6 +26,9 @@
 						</th>
 						<th>
 						Opiskelijanumero
+						</th>
+						<th>
+							Opiskeluvuosi
 						</th>
 <th>
 	Sähköposti
@@ -53,7 +57,9 @@
 						<td>
 							{{$user->studentNumber}}
 						</td>
-
+						<td>
+							{{count($user_data) + 1}}.
+						</td>
 						<td>
 							{{$user->email}}
 						</td>
@@ -75,7 +81,7 @@
 
 				<h3>{{$key + 1}}. Lukukausi {{$studyplan->academic_year}}</h3>
 				<p>
-					Aiotut opintosuoritukset
+					Opintosuoritukset
 				</p>
 				<h4>Syksy</h4>
 
@@ -117,9 +123,17 @@
 							<td>
 								{{$studymodule->subject}}
 							</td>
-							<td>
+							@if ($studymodule->accomplished)
+							<td class="bg-success">
 
+									Kyllä
 							</td>
+
+							@else
+								<td class="bg-warning">
+									Ei
+								</td>
+							@endif
 
 						</tr>
 							@endif
@@ -171,9 +185,20 @@
 						<td>
 							{{$studymodule->subject}}
 						</td>
-						<td>
 
-						</td>
+							@if ($studymodule->accomplished)
+							<td class="bg-success">
+
+									Kyllä
+							</td>
+
+							@else
+								<td class="bg-warning">
+									Ei
+								</td>
+							@endif
+
+
 
 					</tr>
 						@endif
@@ -183,15 +208,66 @@
 
 
 		</table>
+		<table class = "table">
+			<tr>
+				<th>
+					Lukukauden suoritetut opintopisteet yhteensä:
+				</th>
+				<td>
+					0
+				</td>
+			</tr>
+		</table>
+
+		<h3>Työtilanne</h3>
+
+		@if ($studyplan->has_job)
+		<p>
+			Töissä. <br>
+			{{$studyplan->job_description}} <br>
+			{{$studyplan->job_type}} <br>
+
+			{{$studyplan->job_hours}} tuntia viikossa
+
+		</p>
+		@else
+		<p>
+			Ei töitä lukukauden aikana.
+		</p>
+		@endif
+
+		<p>
+			{{$studyplan->job_explanation}}
+		</p>
+
+		<h3>Kiinnostuksen kohteet omassa koulutusohjelmassa</h3>
+
+		<p>
+			{{$studyplan->interest_in_own_field}}
+		</p>
+
+		<h3>Kiinnostuksen kohteet valinnaisissa opinnoissa</h3>
+<p>
+	{{$studyplan->optional_interest}}
+</p>
+
 
 @endforeach
-				<a href="studyplans/create" class ="btn btn-primary">Täytä uusi lomake</a>
 			@endunless
 
 			@if ($user_data->isEmpty())
 			<h2>Ei täytettyjä opintosuunnitelmia</h2>
-			<a href="studyplans/create" class ="btn btn-primary">Täytä uusi lomake</a>
+			<a href="studyplans/create" class ="btn btn-primary">Täytä ensimmäisen vuoden lomake</a>
 			@endif
+
+			@if (count($user_data) == 1)
+			<a href="studyplans/create" class ="btn btn-primary">Täytä toisen vuoden lomake lomake</a>
+			@endif
+
+			@if (count($user_data) == 2)
+			<a href="studyplans/create" class ="btn btn-primary">Täytä kolmannen vuoden lomake lomake</a>
+			@endif
+
 		</div>
 	</div>
 </div>
