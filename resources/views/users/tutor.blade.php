@@ -83,6 +83,11 @@ Sähköposti
     <td>
       {{$student->email}}
     </td>
+
+    <td>
+      <a class = "btn btn-primary" href="profile/{{$student->id}}">Katso opiskelijan tiedot</a>
+    </td>
+
   </tr>
 
 
@@ -125,6 +130,10 @@ Sähköposti
     <td>
       {{$student->email}}
     </td>
+
+    <td>
+      <a class = "btn btn-primary" href="profile/{{$student->id}}">Katso opiskelijan tiedot</a>
+    </td>
   </tr>
 
 
@@ -165,6 +174,10 @@ Sähköposti
 
     <td>
       {{$student->email}}
+    </td>
+
+    <td>
+      <a class = "btn btn-primary" href="profile/{{$student->id}}">Katso opiskelijan tiedot</a>
     </td>
   </tr>
 

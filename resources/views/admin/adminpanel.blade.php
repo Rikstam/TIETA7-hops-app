@@ -22,6 +22,9 @@ Email
     <th>
       Opiskelijat
     </th>
+    <th>
+      Opiskelijat yhteensä
+    </th>
   </tr>
 </thead>
           @foreach ($tutors as $tutor)
@@ -46,6 +49,10 @@ Email
               @endforeach
 
             </ul>
+            </td>
+
+            <td>
+              {{count($tutor->tutored_students)}}
             </td>
             <td>
               <h4>Valitse tuutorille {{$tutor->firstName}} {{$tutor->lastName}} opiskelijat tästä</h4>
