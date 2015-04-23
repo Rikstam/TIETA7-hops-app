@@ -4,6 +4,7 @@ use App\User;
 use App\Studyplan;
 use App\Studymodule;
 use Auth;
+use DB;
 class HomeController extends Controller {
 
 	/*
@@ -35,71 +36,52 @@ class HomeController extends Controller {
 	public function index()
 	{
 		$user =  Auth::user();//->with('studyplans.studymodules')->get();
-		$user_data = $user->studyplans()->with('studymodules')->get();
+
+		if ($user->role == 'student'){
 
 
-		foreach ($user_data as $key => $value) {
+			$user_data = $user->studyplans()->with('studymodules')->get();
 
-			$user_data[$key]['totalcredits'] = 0 ;
 
-			foreach ( $user_data[$key]['studymodules'] as $studymodule){
+			foreach ($user_data as $key => $value) {
 
-				if($studymodule['accomplished']){
-				$user_data[$key]['totalcredits'] += $studymodule['credits'];
+				$user_data[$key]['totalcredits'] = 0 ;
+
+				foreach ( $user_data[$key]['studymodules'] as $studymodule){
+
+					if($studymodule['accomplished']){
+					$user_data[$key]['totalcredits'] += $studymodule['credits'];
+					}
 				}
+
 			}
 
-		}
 
+		return view('home', compact('user', 'user_data','accomplished_credits'));
 
-		//dd($user_data);
-		//$user_data->credits = 0;
+	} else if($user->role == 'teacher-tutor') {
 
-	//	$user_data->each(function($ud){
+				//$students = DB::table('users')
+				//->leftJoin('study_plans', 'users.id', '=', 'study_plans.user_id')
+				//->where('tutor_id', '=' , $user->id)
+				//->get();
 
-		//	$ud->total_credits = 0;
-
-			//$calculateCredits = 0;
-
-			//$ud->$calculateCredits = $ud->studymodules->map(function($studymodule){
-
-			//	$ud->total_credits += $studymodule->credits;
-			//return $studymodule->credits ;
-
-			//});
-
-			//$ud->total_credits = $calculateCredits;
-
-	//	});
-
-
-	//	$user_data->studymodules->each(function($module){
-
-		//	$user_data->credits += $module->
-
-	//	});
-
-/*
-		$user_data->each(function($ud){
-			$credits = $ud->studymodules->filter(function($studymodule){
-				return $studymodule->accomplished && $studymodule->semester_name == 'autumn';
+				$students = DB::table('users')
+											->select(DB::raw('users.id, "firstName", "lastName", "studentNumber", email, count(study_plans.id) as studyplans'))
+											->leftJoin('study_plans', 'users.id', '=', 'study_plans.user_id')
+											->where('tutor_id', '=', $user->id)
+                     	->groupBy('users.id')
+                     	->get();
 
 
 
-			});
-			//dd($credits);
-			$ud->springtotals = 0;
+				//return $students;
+				//return $user->with('student')->get();
 
-			$ud->autumntotals = $ud->studymodules->filter(function($studymodule){
-				return $studymodule->accomplished && $studymodule->semester_name == 'spring';
-			});
+				return view('home', compact('user', 'students'));
 
-		});
-*/
+	}
 
-
-	//return $user_data;
-	return view('home', compact('user', 'user_data','accomplished_credits'));
 	}
 
 }

@@ -19,6 +19,8 @@ Route::get('users', 'UsersController@index');
 
 Route::get('profile/{id}', 'UsersController@show');
 
+
+
 Route::get('admin', 'AdminController@adminpanel');
 Route::post('admin','AdminController@allocateStudents');
 
