@@ -3,7 +3,7 @@
 @section('content')
 <div class ="container">
 
-  <div class ="col-md-8 col-md-offset-2">
+  <div class ="col-md-10 col-md-offset-1">
     <h1>HOPS-Kysely lukuvuodelle {{ $existingStudyplans + 1 }}</h1>
 
     <div class="alert alert-info" role="alert">
@@ -14,7 +14,7 @@
 
   </div>
 
-  <div class ="col-md-8 col-md-offset-2">
+  <div class ="col-md-10 col-md-offset-1">
 
   {!! Form::model($studyplan = new \App\Studyplan, ['url'=>'studyplans'])!!}
     <div class = "row">
@@ -32,11 +32,11 @@
 
   <h3><span class ="autumn">Syyslukukaudella</span> <span id = "academicYear"></span> aion suorittaa seuraavat opintojaksot:</h3>
 
-    @for ($i = 0; $i < $numberOfAutumnInputs; $i++)
+
 
     <div class = "row autumnModule">
 
-      <div class = "form-group col-md-5">
+      <div class = "form-group col-md-4">
         {!! Form::label('module_name', 'Opintojakson nimi') !!}
         {!! Form::text('module_name[]', null, ['class'=>'form-control module_name']) !!}
       </div>
@@ -65,14 +65,20 @@
 
       </div>
 
-
+      <div class = "form-group col-md-1">
+        {!! Form::label('deleteRow', 'Poista') !!}
+        <button id = "deleteRow" type="button" name = "addRow" class = "btn btn-danger">
+          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        </button>
+      </div>
 
         {!! Form::input('hidden','semester_name[]','autumn') !!}
 
 
     </div>
 
-    @endfor
+
+    <button id = "addRow" type="button" class="btn btn-success"> </span> Lisää uusi opintojakso</button>
 
 
   <hr>
