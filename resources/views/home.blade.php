@@ -81,7 +81,7 @@
 
 				<h3>{{$key + 1}}. Lukukausi {{$studyplan->academic_year}}</h3>
 				<p>
-					Opintosuoritukset
+					Opintopisteet yhteensä : {{$studyplan->totalcredits}}
 				</p>
 				<h4>Syksy</h4>
 
@@ -208,16 +208,7 @@
 
 
 		</table>
-		<table class = "table">
-			<tr>
-				<th>
-					Lukukauden suoritetut opintopisteet yhteensä:
-				</th>
-				<td>
-					0
-				</td>
-			</tr>
-		</table>
+
 
 		<h3>Työtilanne</h3>
 
@@ -239,6 +230,28 @@
 		<p>
 			{{$studyplan->job_explanation}}
 		</p>
+
+
+
+
+			@if ($studyplan->positive_feedback)
+			<h3>Lukuvuoden hyviä asioita olivat</h3>
+			<p>
+			{{$studyplan->positive_feedback}}
+			</p>
+			@endif
+
+
+
+
+			@if ($studyplan->negative_feedback)
+			<h3>Asiota jotka eivät sujuneet odotusteni mukaan lukukaudella</h3>
+			<p>
+			{{$studyplan->negative_feedback}}
+			</p>
+			@endif
+
+
 
 		<h3>Kiinnostuksen kohteet omassa koulutusohjelmassa</h3>
 
