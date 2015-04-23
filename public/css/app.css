@@ -4849,6 +4849,9 @@ button.close {
 div#form-bottom-notice {
   margin-top: 20px; }
 
+#work-situation {
+  display: none; }
+
 .assignTutorForm select[multiple], .assignTutorForm select[size] {
   height: 200px; }
 .assignTutorForm .btn {

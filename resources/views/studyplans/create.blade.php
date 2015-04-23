@@ -139,7 +139,7 @@
 
   </div>
 
-    <div class = "col-md-12">
+    <div id = "work-situation" class = "col-md-12">
       <div class="form-group">
 
 
