@@ -27,7 +27,8 @@ class Kernel extends HttpKernel {
 		'auth' => 'App\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-		'isMasterTutor' => 'App\Http\Middleware\RedirectIfNotMasterTutor'
+		'isMasterTutor' => 'App\Http\Middleware\RedirectIfNotMasterTutor',
+		'redirectToAdmin'=> 'App\Http\Middleware\RedirectToAdminIfMasterTutor'
 	];
 
 }
