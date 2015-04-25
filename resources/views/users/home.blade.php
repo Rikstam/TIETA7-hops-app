@@ -270,15 +270,15 @@
 
 			@if ($user_data->isEmpty())
 			<h2>Ei täytettyjä opintosuunnitelmia</h2>
-			<a href="studyplans/create" class ="btn btn-primary">Täytä ensimmäisen vuoden lomake</a>
+			<a href="studyplans/create" class ="btn btn-primary">Täytä ensimmäinen lomake</a>
 			@endif
 
 			@if (count($user_data) == 1)
-			<a href="studyplans/create" class ="btn btn-primary">Täytä toisen vuoden lomake lomake</a>
+			<a href="studyplans/create" class ="btn btn-primary">Täytä toinen lomake</a>
 			@endif
 
 			@if (count($user_data) == 2)
-			<a href="studyplans/create" class ="btn btn-primary">Täytä kolmannen vuoden lomake lomake</a>
+			<a href="studyplans/create" class ="btn btn-primary">Täytä kolmas lomake</a>
 			@endif
 
 		</div>

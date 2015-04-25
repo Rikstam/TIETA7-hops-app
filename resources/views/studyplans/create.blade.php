@@ -33,7 +33,7 @@
   <h3><span class ="autumn">Syyslukukaudella</span> <span id = "academicYear"></span> aion suorittaa seuraavat opintojaksot:</h3>
 
 
-
+    <section id = "autumnStudies">
     <div class = "row autumnModule">
 
       <div class = "form-group col-md-4">
@@ -42,14 +42,11 @@
       </div>
 
       <div class = "form-group col-md-2">
-        {!! Form::label('credits', 'Opintopisteitä') !!}
+        {!! Form::label('credits', 'Opintopisteet') !!}
 
-        <select name = "credits[]" class ="form-control credits-select">
-          <option selected disabled>Valitse</option>
-            @foreach($creditsAmounts as $creditAmount)
-            <option value="{{ $creditAmount }}">{{ $creditAmount }}</option>
-            @endforeach
-        </select>
+        <input type ="number" name = "credits[]" class ="form-control" min="1" max="10" step ="0.5">
+
+
 
       </div>
 
@@ -57,7 +54,6 @@
         {!! Form::label('subject', 'Oppiaine') !!}
 
         <select name = "subject[]" class ="form-control subject-select ">
-          <option selected disabled>Valitse seuraavista</option>
             @foreach($subjects as $subject)
             <option value="{{ $subject }}">{{ $subject }}</option>
             @endforeach
@@ -66,10 +62,9 @@
       </div>
 
       <div class = "form-group col-md-1">
-        {!! Form::label('deleteRow', 'Poista') !!}
-        <button id = "deleteRow" type="button" name = "addRow" class = "btn btn-danger">
-          <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        </button>
+        {!! Form::label('addRow', 'Lisää') !!}
+        <button id = "addAutumnRow" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+
       </div>
 
         {!! Form::input('hidden','semester_name[]','autumn') !!}
@@ -78,7 +73,8 @@
     </div>
 
 
-    <button id = "addRow" type="button" class="btn btn-success"> </span> Lisää uusi opintojakso</button>
+  </section>
+
 
 
   <hr>
@@ -89,39 +85,46 @@
     Kevään valintasi luonnollisesti tarkentuvat, kun kevään tarkempi opetusohjelma on käytettävissä. Olisi kuitenkin erittäin hyvä, jos jo ennen koko lukuvuoden alkua Sinulla olisi suunnitelma myös kevääksi. Opettajatuutorisi ottaa Sinuun yhteyttä lukuvuoden aikana ja voit tällöin tarkentaa suunnitelmaasi. Laitosten verkkosivuilta löytyy tietoa kuluvan vuoden kevään opetuksesta, jota voit käyttää hyväksesi suunnittelussasi.
   </p>
 
-  @for ($i = 0; $i < $numberOfSpringInputs; $i++)
+
+  <section id = "springStudies">
+
 
   <div class = "row springModule">
 
-    <div class = "form-group col-md-5">
+    <div class = "form-group col-md-4">
       {!! Form::label('module_name', 'Opintojakson nimi') !!}
       {!! Form::text('module_name[]', null, ['class'=>'form-control module_name']) !!}
     </div>
 
     <div class = "form-group col-md-2">
-      {!! Form::label('credits', 'Opintopisteitä') !!}
-      <select name = "credits[]" class ="form-control credits-select">
-        <option selected disabled>Valitse</option>
-          @foreach($creditsAmounts as $creditAmount)
-          <option value="{{ $creditAmount }}">{{ $creditAmount }}</option>
-          @endforeach
-      </select>
+      {!! Form::label('credits', 'Opintopisteet') !!}
+
+      <input type ="number" name = "credits[]" class ="form-control" min="1" max="10" step ="0.5">
+
+
+
     </div>
 
     <div class = "form-group col-md-5">
       {!! Form::label('subject', 'Oppiaine') !!}
       <select name = "subject[]" class ="form-control subject-select">
-        <option selected disabled>Valitse seuraavista</option>
+
           @foreach($subjects as $subject)
           <option value="{{ $subject }}">{{ $subject }}</option>
           @endforeach
       </select>
     </div>
 
+    <div class = "form-group col-md-1">
+      {!! Form::label('addRow', 'Lisää') !!}
+      <button id = "addSpringRow" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+
+    </div>
+
   </div>
   {!! Form::input('hidden','semester_name[]','spring') !!}
 
-  @endfor
+</section>
   <hr>
 
   <h3>Työskentely opiskeluaikana</h3>
