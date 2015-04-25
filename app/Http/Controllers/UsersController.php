@@ -131,13 +131,25 @@ class UsersController extends Controller {
 	 */
 	public function update($id, Request $request)
 	{
-
+		//TODO could move these to a updateUserRequest request
+		$this->validate($request, [
+			'firstName'=>'required',
+			'lastName'=>'required',
+			'email'=>'required|email',
+			'telephone'=>'required',
+			'address' => 'required',
+			'studentNumber'=>'required'
+			]);
 
 		$user = User::findOrFail($id);
 
+
+
 		$user->update($request->all());
 
-		return redirect('profile/' . $user->id);
+		return redirect('profile/' . $user->id)->with([
+			'flash_message' => 'Tiedo päivitetty!'
+			]);
 
 	}
 
