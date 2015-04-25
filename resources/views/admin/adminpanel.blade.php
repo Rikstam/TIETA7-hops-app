@@ -32,7 +32,7 @@ Email
             <tr>
 
             <td>
-              {{$tutor->firstName}} {{$tutor->lastName}}
+            <a href="tutor/{{$tutor->id}}">  {{$tutor->firstName}} {{$tutor->lastName}}</a>
             </td>
             <td>
               {{$tutor->email}}

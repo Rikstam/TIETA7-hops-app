@@ -22,6 +22,8 @@ Route::get('profile/{id}', 'UsersController@show');
 
 
 Route::get('admin', 'AdminController@adminpanel');
+Route::get('tutor/{id}', 'TutorController@show');
+
 Route::post('admin','AdminController@allocateStudents');
 
 Route::controllers([

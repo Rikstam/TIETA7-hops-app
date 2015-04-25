@@ -77,7 +77,7 @@ class HomeController extends Controller {
 
 
 				//return $students;
-				//return $user->with('student')->get();
+			//return $user->with('student')->get();
 
 				//return view('home', compact('user', 'students'));
 
