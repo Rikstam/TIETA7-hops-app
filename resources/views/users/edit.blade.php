@@ -39,7 +39,7 @@
 
 
 
-          <input type="text" class="form-control " name="firstName" value=" {{$student->firstName}} ">
+          <input type="text" class="form-control " name="firstName" value="{{$student->firstName}}">
 
           @if ($errors->has('firstName'))
             <div class="alert alert-danger" role="alert">
@@ -57,7 +57,7 @@
 
       <div class="form-group">
         <label class=" control-label  col-md-4">Sukunimi</label>
-        <div class = "col-md-8"><input type="text" class="form-control" name="lastName" value=" {{$student->lastName}} ">
+        <div class = "col-md-8"><input type="text" class="form-control" name="lastName" value="{{$student->lastName}}">
 
           @if ($errors->has('lastName'))
             <div class="alert alert-danger" role="alert">
