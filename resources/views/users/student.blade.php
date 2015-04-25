@@ -14,8 +14,13 @@
       Opiskelijanumero
       </th>
       <th>
-        Opiskeluvuosi
+        Opintojen aloitusvuosi
       </th>
+
+      <th>
+        Opintovuosi
+      </th>
+
 <th>
 Sähköposti
 </th>
@@ -44,8 +49,13 @@ Sähköposti
         {{$student->studentNumber}}
       </td>
       <td>
-        {{count($student_data) + 1}}.
+        {{$student->created_at->year}}
       </td>
+
+      <td>
+        {{$student->currentYear}}
+      </td>
+
       <td>
         {{$student->email}}
       </td>

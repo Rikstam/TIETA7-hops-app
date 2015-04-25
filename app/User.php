@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Carbon\Carbon;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -31,6 +32,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token','role'];
+
+
+	public function currentStudyYear()
+	{
+		$now = Carbon::now();
+		$startingYear = new Carbon($this->attributes['created_at']);
+
+		if ($startingYear->diffInMonths($now ) <= 12){
+			return 1;
+		}
+
+		else if ($startingYear->diffInMonths($now ) > 12 && $startingYear->diffInYears($now ) <= 24){
+			return 2;
+		}
+		else if ($startingYear->diffInMonths($now ) > 24 && $startingYear->diffInYears($now ) <= 36){
+			return 3;
+		}
+
+		//return $startingYear->diffInMonths($now );
+		//return Carbon::parse($startingYear)->format('Y');
+	}
 
 	public function studyplans(){
 		return $this->hasMany('App\Studyplan');

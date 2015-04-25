@@ -38,6 +38,9 @@ class StudyPlansController extends Controller {
 
 		$user = Auth::user();
 
+		$user->currentYear = $user->currentStudyYear();
+
+
 		$existingStudyplans = $user->studyplans->count();
 		if (	$existingStudyplans > 0) {
 
@@ -89,6 +92,12 @@ class StudyPlansController extends Controller {
 		$user = Auth::user();
 
 		//TODO replace these with proper validations
+
+		//$this->validate($request,[
+		//
+	//	]);
+
+
 		$positiveFeedback = isset($input['positive_feedback']) ? $input['positive_feedback'] : null;
 		$negativeFeedback = isset($input['negative_feedback']) ? $input['negative_feedback'] : null;
 

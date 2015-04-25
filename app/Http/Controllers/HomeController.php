@@ -45,6 +45,9 @@ class HomeController extends Controller {
 
 			$student_data = $student->studyplans()->with('studymodules')->get();
 
+			$student->currentYear = $student->currentStudyYear();
+
+			//return $student;
 			//TODO use laravel collection methods to get credits per semester
 			foreach ($student_data as $key => $value) {
 
@@ -60,7 +63,7 @@ class HomeController extends Controller {
 			}
 
 
-		return view('home.student', compact('student', 'student_data','accomplished_credits'));
+		return view('home.student', compact('student', 'student_data','accomplished_credits', 'currentYear'));
 
 
 
