@@ -38,7 +38,7 @@ class StudyPlansController extends Controller {
 
 		$user = Auth::user();
 
-		$user->currentYear = $user->currentStudyYear();
+		$currentYear = $user->currentStudyYear();
 
 
 		$existingStudyplans = $user->studyplans->count();
@@ -56,7 +56,8 @@ class StudyPlansController extends Controller {
 			'2014-2015' => '2014 - 2015',
 			'2015-2016' => '2015 - 2016',
 			'2016-2017' => '2016 - 2017',
-			'2017-2018' => '2017 - 2018'
+			'2017-2018' => '2017 - 2018',
+			'2018-2019' => '2018 - 2019'
 		];
 
 		$creditsAmounts = [0.5];
@@ -76,7 +77,7 @@ class StudyPlansController extends Controller {
 			'Bioteknologian tutkinto-ohjelma'
 		];
 
-			return view('studyplans.create', compact('subjects', 'creditsAmounts', 'numberOfAutumnInputs', 'numberOfSpringInputs', 'academicYears', 'existingStudyplans','previousYearStudies' ));
+			return view('studyplans.create', compact('currentYear','subjects', 'creditsAmounts', 'numberOfAutumnInputs', 'numberOfSpringInputs', 'academicYears', 'existingStudyplans','previousYearStudies' ));
 
 	}
 

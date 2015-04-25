@@ -18,7 +18,7 @@ var paths = {
 
 elixir(function(mix) {
     mix.sass('app.scss','public/css/',{includePaths: [paths.bootstrap + 'stylesheets/']})
-    .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
+    .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts/bootstrap')
     .scripts([
 
     paths.jquery + "dist/jquery.js",
