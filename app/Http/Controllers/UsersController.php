@@ -129,10 +129,15 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
 
+
 		$user = User::findOrFail($id);
+
+		$user->update($request->all());
+
+		return redirect('profile/' . $user->id);
 
 	}
 

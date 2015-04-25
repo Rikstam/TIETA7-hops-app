@@ -15,68 +15,47 @@
 			</div>
 
       <h2>Opiskelijan tiedot</h2>
-      <table class = "table">
-        <thead>
-          <tr>
 
-            <th>
-              Etunimi
-            </th>
 
-            <th>
-            Sukunimi
-            </th>
-            <th>
-            Opiskelijanumero
-            </th>
-            <th>
-              Opiskeluvuosi
-            </th>
-      <th>
-      Sähköposti
-      </th>
-            <th>
-              Puhelin
-            </th>
+      {!! Form::open(['method'=> 'PATCH', 'url' => 'user/' . $student->id, 'class' => 'form-horizontal' ]) !!}
 
-            <th>
-              Osoite
-            </th>
+      <div class="form-group">
+        <label for="firstName" class="col-md-4 control-label">Etunimi</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control " name="firstName" value=" {{$student->firstName}} ">
 
-          </tr>
-        </thead>
+        </div>
 
-        <tbody>
-          <tr>
-            <td>
-              {{$student->firstName}}
-            </td>
+      </div>
 
-            <td>
-              {{$student->lastName}}
-            </td>
+      <div class="form-group">
+        <label class=" control-label  col-md-4">Sukunimi</label>
+        <div class = "col-md-8"><input type="text" class="form-control" name="lastName" value=" {{$student->lastName}} "></div>
+      </div>
 
-            <td>
-              {{$student->studentNumber}}
-            </td>
-            <td>
-              {{count($student_data) + 1}}.
-            </td>
-            <td>
-              {{$student->email}}
-            </td>
+      <div class="form-group">
 
-            <td>
-              {{$student->telephone}}
-            </td>
+        <label class=" control-label  col-md-4">Email</label>
+        <div class = "col-md-8"><input type="email" class="form-control" name="email" value="{{$student->email}}"></div>
+      </div>
+      <div class="form-group">
+        <label class=" control-label col-md-4">Puhelin</label>
+        <div class = "col-md-8"><input type="text" class="form-control" name="telephone" value ="{{$student->telephone}}"></div>
+      </div>
 
-            <td>
-              {{$student->address}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="form-group">
+        <label  class=" control-label col-md-4">Osoite</label>
+        <div class = "col-md-8"><textarea  name = "address">{{$student->address}}</textarea></div>
 
+      </div>
+      <div class="form-group">
+        <label class=" control-label col-md-4">Opiskelijanumero</label>
+        <div class = "col-md-8"><input type="number" class="form-control" name="studentNumber" value="{{$student->studentNumber}}"></div>
+      </div>
+
+      {!! Form::submit('Päivitä', ['class' => 'btn btn-primary']) !!}
+
+      {!! Form::close() !!}
 
 </div>
 </div>

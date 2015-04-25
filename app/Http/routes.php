@@ -18,7 +18,8 @@ Route::get('home', 'HomeController@index');
 Route::get('home/tutor', 'TutorController@index');
 
 
-Route::get('users', 'UsersController@index');
+Route::resource('user', 'UsersController', ['only' => ['index', 'update']]);
+
 
 Route::get('profile/{id}', 'UsersController@edit');
 
