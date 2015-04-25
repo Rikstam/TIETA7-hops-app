@@ -9,12 +9,13 @@
 
 				<div class="panel-body">
 				Olet kirjautuneena sisään: {{ $user->firstName}} {{ $user->lastName}}
+				<br>
+				<a href="/auth/logout">Kirjaudu ulos</a>
+
 				</div>
 			</div>
 
-			@if ($user->role == 'student')
+
 				@include('users.student')
-			@elseif ($user->role == 'teacher-tutor')
-				@include('users.tutor')
-			@endif
+
 @endsection

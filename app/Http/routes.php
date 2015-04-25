@@ -15,6 +15,9 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('home/tutor', 'TutorController@index');
+
+
 Route::get('users', 'UsersController@index');
 
 Route::get('profile/{id}', 'UsersController@show');

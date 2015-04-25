@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\User;
+use Auth;
 
 class AdminController extends Controller {
 
@@ -21,10 +22,11 @@ class AdminController extends Controller {
 	public function adminpanel()
 
 	{
-		$students = User::Students()->get();
+		$user = Auth::user();
+		$students = User::Students()->orderBy('lastName', 'asc')->orderBy('firstName', 'asc')->get();
 		$tutors 	= User::Teachertutors()->with('tutored_students')->get();
 		//return $tutors;
-		return  view('admin.adminpanel', compact('students', 'tutors'));
+		return  view('admin.adminpanel', compact('students', 'tutors','user'));
 	}
 
 

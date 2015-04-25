@@ -6,6 +6,14 @@
   <div class="row">
 
     <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Profiilisi</div>
+
+        <div class="panel-body">
+        Olet kirjautuneena sisään: {{ $user->firstName}} {{ $user->lastName}} <br>
+        <a href="/auth/logout">Kirjaudu ulos</a>
+        </div>
+      </div>
 
       <h1>Tuutorit</h1>
 
@@ -55,14 +63,26 @@ Email
               {{count($tutor->tutored_students)}}
             </td>
             <td>
-              <h4>Valitse tuutorille {{$tutor->firstName}} {{$tutor->lastName}} opiskelijat tästä</h4>
+              <h4>Valitse tuutorille {{$tutor->firstName}} {{$tutor->lastName}} opiskelijat tästä.</h4>
+              <p>
+                <span class = "bg-danger">Punaisella merkityt ovat opiskelijoita ilman tutoria.</span>
+              </p>
+
+              <p>
+                <span class = "bg-success">Vihreällä merkityillä opiskelijoilla on jo tuutori.</span>
+              </p>
+
+              <p>
+                Valita useamman opiskelijan kerralla, painamalla CTRL+vasen klikkaus (CMD + vasen klikkaus macilla ).
+              </p>
+
               {!! Form::open(array('url'=>'admin', 'class'=> 'assignTutorForm')) !!}
 
 
               <select name = "tutored_students[]" class ="form-control credits-select" multiple>
                 <option selected disabled>Valitse</option>
                   @foreach($students as $student)
-                  <option value="{{ $student->id }}">{{ $student->firstName }} {{ $student->lastName }}</option>
+                  <option value="{{ $student->id }}" class = "{{ $student->tutor_id ?'bg-success' : 'bg-danger'}}">{{ $student->firstName }} {{ $student->lastName }}</option>
                   @endforeach
               </select>
               {!!Form::input('hidden', 'tutor_id', $tutor->id) !!}

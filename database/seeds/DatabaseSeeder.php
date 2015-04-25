@@ -40,8 +40,8 @@ class UserTableSeeder extends Seeder {
 
 				User::create(
 				array(
-					'firstName' => 'Pepsi',
-					'lastName'=> 'Pena',
+					'firstName' => 'Timppa ',
+					'lastName'=> 'Testimies',
 					'telephone'=> '343434343',
 					'address' => 'katu 5',
 					'studentNumber' => '5555',
@@ -52,8 +52,8 @@ class UserTableSeeder extends Seeder {
 
 				User::create(
 				array(
-					'firstName' => 'Pepsi2',
-					'lastName'=> 'Pena',
+					'firstName' => 'Aku',
+					'lastName'=> 'Hirviniemi',
 					'telephone'=> '34343432433',
 					'address' => 'katu 52',
 					'studentNumber' => '24534552',
@@ -64,8 +64,8 @@ class UserTableSeeder extends Seeder {
 
 				User::create(
 				array(
-					'firstName' => 'Pepsi3',
-					'lastName'=> 'Pena',
+					'firstName' => 'Sanna',
+					'lastName'=> 'suutari',
 					'telephone'=> '343434343',
 					'address' => 'katu 53',
 					'studentNumber' => '12353',
@@ -85,6 +85,43 @@ class UserTableSeeder extends Seeder {
 					'password' => bcrypt('jaffamies')
 					)
 				);
+
+				User::create(
+				array(
+					'firstName' => 'Tony',
+					'lastName'=> 'Shalhoub',
+					'telephone'=> '343434343',
+					'address' => 'katu 53',
+					'studentNumber' => '2298353',
+					'email' => 'tony.s@gmail.com',
+					'password' => bcrypt('jaffamies')
+					)
+				);
+
+				User::create(
+				array(
+					'firstName' => 'Musta',
+					'lastName'=> 'Naamio',
+					'telephone'=> '343434343',
+					'address' => 'katu 53',
+					'studentNumber' => '77298353',
+					'email' => 'musta.naamio@gmail.com',
+					'password' => bcrypt('jaffamies')
+					)
+				);
+
+				User::create(
+				array(
+					'firstName' => 'Aulis',
+					'lastName'=> 'Gerlander',
+					'telephone'=> '343434343',
+					'address' => 'katu 53',
+					'studentNumber' => '88298353',
+					'email' => 'aulisg@gmail.com',
+					'password' => bcrypt('jaffamies')
+					)
+				);
+
 
 
 				User::create(
@@ -118,6 +155,18 @@ class UserTableSeeder extends Seeder {
 					'telephone'=> '343434343',
 					'address' => 'katu 53',
 					'email' => 'tino.tuutori@gmail.com',
+					'password' => bcrypt('jaffamies'),
+					'role'		=> 'teacher-tutor'
+					)
+				);
+
+				User::create(
+				array(
+					'firstName' => 'Teppo',
+					'lastName'=> 'Tuutor',
+					'telephone'=> '343434343',
+					'address' => 'katu 53',
+					'email' => 'teppo.tuutori@gmail.com',
 					'password' => bcrypt('jaffamies'),
 					'role'		=> 'teacher-tutor'
 					)

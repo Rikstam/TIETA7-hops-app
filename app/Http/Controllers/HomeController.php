@@ -26,6 +26,8 @@ class HomeController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
+		$this->middleware('redirectToTutor');
+
 		$this->middleware('redirectToAdmin');
 	}
 
@@ -58,7 +60,7 @@ class HomeController extends Controller {
 			}
 
 
-		return view('home', compact('user', 'user_data','accomplished_credits'));
+		return view('home.student', compact('user', 'user_data','accomplished_credits'));
 
 	} else if($user->role == 'teacher-tutor') {
 
