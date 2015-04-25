@@ -42,7 +42,7 @@ class HomeController extends Controller {
 
 			$user_data = $user->studyplans()->with('studymodules')->get();
 
-
+			//TODO use laravel collection methods to get credits per semester
 			foreach ($user_data as $key => $value) {
 
 				$user_data[$key]['totalcredits'] = 0 ;
