@@ -38,29 +38,29 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$user =  Auth::user();//->with('studyplans.studymodules')->get();
+		$student = Auth::user();//->with('studyplans.studymodules')->get();
 
 
 
 
-			$user_data = $user->studyplans()->with('studymodules')->get();
+			$student_data = $student->studyplans()->with('studymodules')->get();
 
 			//TODO use laravel collection methods to get credits per semester
-			foreach ($user_data as $key => $value) {
+			foreach ($student_data as $key => $value) {
 
-				$user_data[$key]['totalcredits'] = 0 ;
+				$student_data[$key]['totalcredits'] = 0 ;
 
-				foreach ( $user_data[$key]['studymodules'] as $studymodule){
+				foreach ( $student_data[$key]['studymodules'] as $studymodule){
 
 					if($studymodule['accomplished']){
-					$user_data[$key]['totalcredits'] += $studymodule['credits'];
+					$student_data[$key]['totalcredits'] += $studymodule['credits'];
 					}
 				}
 
 			}
 
 
-		return view('home.student', compact('user', 'user_data','accomplished_credits'));
+		return view('home.student', compact('student', 'student_data','accomplished_credits'));
 
 
 

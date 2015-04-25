@@ -1,4 +1,4 @@
-## HOPS sovellus TIEATA7
+## HOPS sovellus TIETA7
 
 Tietokantaohjelmointikurssin harjoitustyö, jossa opiskelija voi täyttää
 sähköisesti henkilökohtaisen opintosuunnitelman kolmen vuoden aikana ja

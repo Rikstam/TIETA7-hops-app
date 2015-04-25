@@ -8,7 +8,7 @@
 				<div class="panel-heading">Profiilisi</div>
 
 				<div class="panel-body">
-				Olet kirjautuneena sisään: {{ $user->firstName}} {{ $user->lastName}}
+				Olet kirjautuneena sisään: {{ $student->firstName}} {{ $student->lastName}}
 				<br>
 				<a href="/auth/logout">Kirjaudu ulos</a>
 
