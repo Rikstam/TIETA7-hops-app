@@ -9,7 +9,11 @@
 
 				<div class="panel-body">
 				Olet kirjautuneena sisään: {{ $user->firstName}} {{ $user->lastName}} <br>
-				<a href="/auth/logout">Kirjaudu ulos</a>
+
+        <a href="/home">Palaa</a>
+
+        <a href="/auth/logout">Kirjaudu ulos</a>
+
 
 				</div>
 			</div>
