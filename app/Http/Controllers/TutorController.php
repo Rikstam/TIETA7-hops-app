@@ -23,20 +23,18 @@ class TutorController extends Controller {
 	{
 		$user =  Auth::user();
 
-		return view('home.tutor', compact('user'));
+		$students = $this->getTutorsStudents($user);
+		//return $students;
+		return view('home.tutor', compact('user', 'students'));
 	}
 
 	public function show($id)
 	{
 
-		$tutor = User::findOrfail($id);
+		$user= User::findOrfail($id);
 
-		$students = DB::table('users')
-									->select(DB::raw('users.id, "firstName", "lastName", "studentNumber", email, count(study_plans.id) as studyplans'))
-									->leftJoin('study_plans', 'users.id', '=', 'study_plans.user_id')
-									->where('tutor_id', '=', $tutor->id)
-									->groupBy('users.id')
-									->get();
+		$students = $this->getTutorsStudents( $user);
+
 		dd($students);
 		//return view('admin.tutor', compact('user', 'students'));
 	}
@@ -46,4 +44,15 @@ class TutorController extends Controller {
 
 	}
 
+	private function getTutorsStudents(User $tutor)
+	{
+		$students = DB::table('users')
+									->select(DB::raw('users.id, "firstName", "lastName", "studentNumber", email, count(study_plans.id) as studyplans'))
+									->leftJoin('study_plans', 'users.id', '=', 'study_plans.user_id')
+									->where('tutor_id', '=', $tutor->id)
+									->groupBy('users.id')
+									->get();
+
+		return $students;
+	}
 }

@@ -1,4 +1,4 @@
-<h2>Omat tiedot</h2>
+<h2>Opiskelijan tiedot</h2>
 <table class = "table">
   <thead>
     <tr>
@@ -33,37 +33,37 @@ Sähköposti
   <tbody>
     <tr>
       <td>
-        {{$user->firstName}}
+        {{$student->firstName}}
       </td>
 
       <td>
-        {{$user->lastName}}
+        {{$student->lastName}}
       </td>
 
       <td>
-        {{$user->studentNumber}}
+        {{$student->studentNumber}}
       </td>
       <td>
-        {{count($user_data) + 1}}.
+        {{count($student_data) + 1}}.
       </td>
       <td>
-        {{$user->email}}
-      </td>
-
-      <td>
-        {{$user->telephone}}
+        {{$student->email}}
       </td>
 
       <td>
-        {{$user->address}}
+        {{$student->telephone}}
+      </td>
+
+      <td>
+        {{$student->address}}
       </td>
     </tr>
   </tbody>
 </table>
-@unless ( $user_data->isEmpty() )
-<h2>Opintosuunnitelmasi</h2>
+@unless ( $student_data->isEmpty() )
+<h2>Opintosuunnitelmat</h2>
 
-  @foreach ($user_data as $key => $studyplan)
+  @foreach ($student_data as $key => $studyplan)
 
   <h3>{{$key + 1}}. Lukukausi {{$studyplan->academic_year}}</h3>
   <p>
@@ -254,16 +254,16 @@ Ei töitä lukukauden aikana.
 @endforeach
 @endunless
 
-@if ($user_data->isEmpty())
+@if ($student_data->isEmpty())
 <h2>Ei täytettyjä opintosuunnitelmia</h2>
 <a href="studyplans/create" class ="btn btn-primary">Täytä ensimmäisen vuoden lomake</a>
 @endif
 
-@if (count($user_data) == 1)
+@if (count($student_data) == 1)
 <a href="studyplans/create" class ="btn btn-primary">Täytä toisen vuoden lomake lomake</a>
 @endif
 
-@if (count($user_data) == 2)
+@if (count($student_data) == 2)
 <a href="studyplans/create" class ="btn btn-primary">Täytä kolmannen vuoden lomake lomake</a>
 @endif
 

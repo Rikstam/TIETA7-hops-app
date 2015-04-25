@@ -20,7 +20,7 @@ Route::get('home/tutor', 'TutorController@index');
 
 Route::get('users', 'UsersController@index');
 
-Route::get('profile/{id}', 'UsersController@show');
+Route::get('profile/{id}', 'UsersController@edit');
 
 
 

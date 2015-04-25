@@ -29,7 +29,8 @@ class Kernel extends HttpKernel {
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 		'isMasterTutor' => 'App\Http\Middleware\RedirectIfNotMasterTutor',
 		'redirectToAdmin'=> 'App\Http\Middleware\RedirectToAdminIfMasterTutor',
-		'redirectToTutor'=> 'App\Http\Middleware\RedirectToTutorIfTeacherTutor'
+		'redirectToTutor'=> 'App\Http\Middleware\RedirectToTutorIfTeacherTutor',
+		'isTutorOrAdmin' =>'App\Http\Middleware\RedirectIfNotTeacherTutorOrMasterTutor'
 	];
 
 }

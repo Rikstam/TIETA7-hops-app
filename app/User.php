@@ -49,6 +49,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		$query->where('role', '=', 'teacher-tutor')->get();
 	}
 
+	public function isAStudent()
+	{
+		if ($this->role == 'student') {
+			return true;
+		}
+	}
+
 	public function isATeacherTutor()
 	{
 		if ($this->role == 'teacher-tutor') {

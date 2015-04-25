@@ -40,7 +40,7 @@ class HomeController extends Controller {
 	{
 		$user =  Auth::user();//->with('studyplans.studymodules')->get();
 
-		if ($user->role == 'student'){
+
 
 
 			$user_data = $user->studyplans()->with('studymodules')->get();
@@ -62,28 +62,7 @@ class HomeController extends Controller {
 
 		return view('home.student', compact('user', 'user_data','accomplished_credits'));
 
-	} else if($user->role == 'teacher-tutor') {
 
-				//$students = DB::table('users')
-				//->leftJoin('study_plans', 'users.id', '=', 'study_plans.user_id')
-				//->where('tutor_id', '=' , $user->id)
-				//->get();
-
-				$students = DB::table('users')
-											->select(DB::raw('users.id, "firstName", "lastName", "studentNumber", email, count(study_plans.id) as studyplans'))
-											->leftJoin('study_plans', 'users.id', '=', 'study_plans.user_id')
-											->where('tutor_id', '=', $user->id)
-                     	->groupBy('users.id')
-                     	->get();
-
-
-
-				//return $students;
-			//return $user->with('student')->get();
-
-				//return view('home', compact('user', 'students'));
-
-	}
 
 	}
 

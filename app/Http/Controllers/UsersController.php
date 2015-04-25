@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\User;
-
+use Auth;
 
 class UsersController extends Controller {
 
@@ -13,6 +13,9 @@ class UsersController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
+		$this->middleware('isTutorOrAdmin', ['only' => ['edit']]);
+		$this->middleware('isMasterTutor', ['only' => ['index','destroy']]);
+
 	}
 
 	/**
@@ -57,10 +60,32 @@ class UsersController extends Controller {
 	public function show($id)
 	{
 
+		$user = Auth::user();
+		$student =  User::findOrFail($id);
 
-		$user =  User::findOrFail($id);
-		$user_data  = $user->studyplans()->with('studymodules')->get();
-		return 	$user_data;
+
+		//TODO DRY this is duplicated in HomeController@index
+		$student_data  = $student->studyplans()->with('studymodules')->get();
+
+		foreach ($student_data as $key => $value) {
+
+			$student_data[$key]['totalcredits'] = 0 ;
+
+			foreach ( $student_data[$key]['studymodules'] as $studymodule){
+
+				if($studymodule['accomplished']){
+					$student_data[$key]['totalcredits'] += $studymodule['credits'];
+				}
+			}
+
+		}
+
+
+	return view('home.student', compact('user','student', 'student_data','accomplished_credits'));
+
+
+
+		//return $user_data;
 		//return view('users.profile', compact('user'));
 	}
 
@@ -72,7 +97,30 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$user = Auth::user();
+		$student =  User::findOrFail($id);
+
+
+		//TODO DRY this is duplicated in HomeController@index
+		$student_data  = $student->studyplans()->with('studymodules')->get();
+
+		foreach ($student_data as $key => $value) {
+
+			$student_data[$key]['totalcredits'] = 0 ;
+
+			foreach ( $student_data[$key]['studymodules'] as $studymodule){
+
+				if($studymodule['accomplished']){
+					$student_data[$key]['totalcredits'] += $studymodule['credits'];
+				}
+			}
+
+		}
+
+
+	return view('users.edit', compact('user','student', 'student_data','accomplished_credits'));
+
+
 	}
 
 	/**
@@ -84,6 +132,7 @@ class UsersController extends Controller {
 	public function update($id)
 	{
 
+		$user = User::findOrFail($id);
 
 	}
 

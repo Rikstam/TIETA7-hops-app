@@ -85,7 +85,7 @@ Sähköposti
     </td>
 
     <td>
-      <a class = "btn btn-primary" href="profile/{{$student->id}}">Katso opiskelijan tiedot</a>
+      <a class = "btn btn-primary" href="{{ action('UsersController@edit',[$student->id]) }}">Tarkastele / muokkaa tietoja</a>
     </td>
 
   </tr>
@@ -132,7 +132,7 @@ Sähköposti
     </td>
 
     <td>
-      <a class = "btn btn-primary" href="profile/{{$student->id}}">Katso opiskelijan tiedot</a>
+      <a class = "btn btn-primary" href="{{ action('UsersController@show',[$student->id]) }}">Tarkastele / muokkaa tietoja</a>
     </td>
   </tr>
 
@@ -177,7 +177,7 @@ Sähköposti
     </td>
 
     <td>
-      <a class = "btn btn-primary" href="profile/{{$student->id}}">Katso opiskelijan tiedot</a>
+      <a class = "btn btn-primary" href="profile/{{$student->id}}">Tarkastele / muokkaa tietoja</a>
     </td>
   </tr>
 

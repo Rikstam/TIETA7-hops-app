@@ -15,6 +15,7 @@
 			</div>
 
 
+			@include('users.tutor')
 
 
 @endsection
