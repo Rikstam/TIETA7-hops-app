@@ -51,19 +51,26 @@ class HomeController extends Controller {
 			//TODO use laravel collection methods to get credits per semester
 			foreach ($student_data as $key => $value) {
 
-				$student_data[$key]['totalcredits'] = 0 ;
+				$student_data[$key]['autumn_totalcredits'] = 0 ;
+				$student_data[$key]['spring_totalcredits'] = 0 ;
 
 				foreach ( $student_data[$key]['studymodules'] as $studymodule){
 
-					if($studymodule['accomplished']){
-					$student_data[$key]['totalcredits'] += $studymodule['credits'];
+					if($studymodule['accomplished'] && $studymodule['semester_name'] == 'autumn'){
+					$student_data[$key]['autumn_totalcredits'] += $studymodule['credits'];
 					}
+
+					if($studymodule['accomplished'] && $studymodule['semester_name'] == 'spring'){
+					$student_data[$key]['spring_totalcredits'] += $studymodule['credits'];
+					}
+
 				}
 
 			}
 
+			
 
-		return view('home.student', compact('student', 'student_data','accomplished_credits', 'currentYear'));
+		return view('home.student', compact('student', 'student_data', 'currentYear'));
 
 
 

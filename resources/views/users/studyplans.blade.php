@@ -4,8 +4,8 @@
   @foreach ($student_data as $key => $studyplan)
 
   <h3>{{$key + 1}}. Lukukausi {{$studyplan->academic_year}}</h3>
-  <p>
-    Opintopisteet yhteensä : {{$studyplan->totalcredits}}
+  <h4>  Lukuvuoden opintopisteet yhteensä : {{$studyplan->autumn_totalcredits + $studyplan->spring_totalcredits}}</h4>
+
   </p>
   <h4>Syksy</h4>
 
@@ -62,7 +62,11 @@
       </tr>
         @endif
       @endforeach
-
+<tr>
+  <td>
+    Syksyn suoritetut pisteet yhteensä : {{$studyplan->autumn_totalcredits}}
+  </td>
+</tr>
   </tbody>
 
 
@@ -128,6 +132,11 @@
       @endif
     @endforeach
 
+    <tr>
+      <td>
+        Kevään suoritetut pisteet yhteensä : {{$studyplan->spring_totalcredits}}
+      </td>
+    </tr>
 </tbody>
 
 
