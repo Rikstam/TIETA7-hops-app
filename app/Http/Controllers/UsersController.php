@@ -119,6 +119,7 @@ class UsersController extends Controller {
 
 		}
 
+	//	return $student_data;
 
 	return view('users.edit', compact('user','student', 'student_data','accomplished_credits'));
 

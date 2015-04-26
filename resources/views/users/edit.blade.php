@@ -150,6 +150,14 @@
       {!! Form::close() !!}
 
 			<hr>
+
+			@include('users.studyplans')
+
+			@if ($student_data->isEmpty())
+			<h2>Ei täytettyjä opintosuunnitelmia</h2>
+			@endif
+
+
 </div>
 </div>
 

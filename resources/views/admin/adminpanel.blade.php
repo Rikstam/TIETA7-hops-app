@@ -82,7 +82,7 @@ Email
               <select name = "tutored_students[]" class ="form-control credits-select" multiple>
                 <option selected disabled>Valitse</option>
                   @foreach($students as $student)
-                  <option value="{{ $student->id }}" class = "{{ $student->tutor_id ?'bg-success' : 'bg-danger'}}">{{ $student->lastName }} {{ $student->firstName }} {{$student->year}} </option>
+                  <option value="{{ $student->id }}" class = "{{ $student->tutor_id ?'bg-success' : 'bg-danger'}}">{{ $student->lastName }} {{ $student->firstName }} Vuosi:{{$student->year}} </option>
                   @endforeach
               </select>
 
