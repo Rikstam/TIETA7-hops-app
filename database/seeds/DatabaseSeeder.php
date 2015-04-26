@@ -32,58 +32,65 @@ class UserTableSeeder extends Seeder {
 				$faker->seed(12345);
 
 				//create  1st year students
-				for ($i=0; $i < 10; $i++) {
+				for ($i=0; $i < 20; $i++) {
 
-
+					$firstname = $faker->firstNameMale;
+					$lastname = $faker->lastName;
+					$email_extension = '@student.uta.fi';
 
 					User::create(
 					array(
-						'firstName' => $faker->firstNameMale ,
-						'lastName'=>  $faker->lastName,
+						'firstName' => $firstname ,
+						'lastName'=>  $lastname,
 						'telephone'=> '343434343',
 						'address' => $faker->address,
 						'studentNumber' => 1000 + $i,
-						'email' => $faker->email,
+						'email' => 	$firstname . '.' . $lastname . $email_extension ,
 						'password' => bcrypt('jaffamies' . '1'),
-						'created_at' =>  Carbon::createFromDate(2014,09,22)->toDateTimeString()
+						'created_at' =>  Carbon::createFromDate(2014, 9 , 11)->toDateTimeString()
 						)
 					);
 				}
 
 				//create  2nd year students
-				for ($i=0; $i < 10; $i++) {
+				for ($i=0; $i < 20; $i++) {
 
-
+					$firstname = $faker->firstNameMale;
+					$lastname = $faker->lastName;
+					$email_extension = '@student.uta.fi';
 
 					User::create(
 					array(
-						'firstName' => $faker->firstNameFemale,
-						'lastName'=> $faker->lastName,
+						'firstName' => $firstname ,
+						'lastName'=>  $lastname,
 						'telephone'=> '343434343',
 						'address' => $faker->address,
 						'studentNumber' => 2000 + $i,
-						'email' => $faker->email,
+						'email' => 	$firstname . '.' . $lastname . $email_extension ,
 						'password' => bcrypt('jaffamies' . '2'),
-						'created_at' =>  Carbon::createFromDate(2013,09,22)->toDateTimeString()
+						'created_at' =>  Carbon::createFromDate(2013,9,22)->toDateTimeString()
 						)
 					);
 				}
 
 				//create  3rd year students
-				for ($i=0; $i < 10; $i++) {
+				for ($i=0; $i < 20; $i++) {
 
 
+					$firstname = $faker->firstNameMale;
+					$lastname = $faker->lastName;
+					$email_extension = '@student.uta.fi';
 
 					User::create(
 					array(
-						'firstName' => $faker->firstNameMale ,
-						'lastName'=>  $faker->lastName,
+						'firstName' => $firstname ,
+						'lastName'=>  $lastname,
 						'telephone'=> '343434343',
 						'address' => $faker->address,
 						'studentNumber' => 3000 + $i,
-						'email' => $faker->email,
+						'email' => 	$firstname . '.' . $lastname . $email_extension ,
 						'password' => bcrypt('jaffamies' . '3'),
-						'created_at' =>  Carbon::createFromDate(2012,09,22)->toDateTimeString()
+						'created_at' =>  Carbon::createFromDate(2012,9,22)->toDateTimeString()
 						)
 					);
 				}

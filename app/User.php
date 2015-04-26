@@ -43,10 +43,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			return 1;
 		}
 
-		else if ($startingYear->diffInMonths($now ) > 12 && $startingYear->diffInYears($now ) <= 24){
+		else if ($startingYear->diffInMonths($now ) > 12 && $startingYear->diffInMonths($now ) <= 24){
 			return 2;
 		}
-		else if ($startingYear->diffInMonths($now ) > 24 && $startingYear->diffInYears($now ) <= 36){
+		else if ($startingYear->diffInMonths($now ) > 24 && $startingYear->diffInMonths($now ) ){
 			return 3;
 		}
 

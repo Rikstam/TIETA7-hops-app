@@ -24,6 +24,12 @@ class AdminController extends Controller {
 	{
 		$user = Auth::user();
 		$students = User::Students()->orderBy('lastName', 'asc')->orderBy('firstName', 'asc')->get();
+
+
+		$students->each(function($student){
+			$student->year = $student->currentStudyYear();
+		});
+
 		$tutors 	= User::Teachertutors()->with('tutored_students')->get();
 		//return $tutors;
 		return  view('admin.adminpanel', compact('students', 'tutors','user'));
