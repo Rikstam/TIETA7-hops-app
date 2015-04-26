@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Carbon\Carbon;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder {
 
@@ -26,104 +28,70 @@ class UserTableSeeder extends Seeder {
 	{
 		DB::table('users')->delete();
 
-				User::create(
-				array(
-					'firstName' => 'Pepsi',
-					'lastName'=> 'Pena',
-					'telephone'=> '343434343',
-					'address' => 'katu 5',
-					'studentNumber' => '555545',
-					'email' => 'pepsi.pena@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
+				$faker = Faker::create();
+				$faker->seed(12345);
 
-				User::create(
-				array(
-					'firstName' => 'Timppa ',
-					'lastName'=> 'Testimies',
-					'telephone'=> '343434343',
-					'address' => 'katu 5',
-					'studentNumber' => '5555',
-					'email' => 'pepsi.pen5a@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
-
-				User::create(
-				array(
-					'firstName' => 'Aku',
-					'lastName'=> 'Hirviniemi',
-					'telephone'=> '34343432433',
-					'address' => 'katu 52',
-					'studentNumber' => '24534552',
-					'email' => 'pepsi.pena2@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
-
-				User::create(
-				array(
-					'firstName' => 'Sanna',
-					'lastName'=> 'suutari',
-					'telephone'=> '343434343',
-					'address' => 'katu 53',
-					'studentNumber' => '12353',
-					'email' => 'pepsi.pena3@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
-
-				User::create(
-				array(
-					'firstName' => 'Keijo',
-					'lastName'=> 'Keksi',
-					'telephone'=> '343434343',
-					'address' => 'katu 53',
-					'studentNumber' => '9898353',
-					'email' => 'keksi3@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
-
-				User::create(
-				array(
-					'firstName' => 'Tony',
-					'lastName'=> 'Shalhoub',
-					'telephone'=> '343434343',
-					'address' => 'katu 53',
-					'studentNumber' => '2298353',
-					'email' => 'tony.s@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
-
-				User::create(
-				array(
-					'firstName' => 'Musta',
-					'lastName'=> 'Naamio',
-					'telephone'=> '343434343',
-					'address' => 'katu 53',
-					'studentNumber' => '77298353',
-					'email' => 'musta.naamio@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
-
-				User::create(
-				array(
-					'firstName' => 'Aulis',
-					'lastName'=> 'Gerlander',
-					'telephone'=> '343434343',
-					'address' => 'katu 53',
-					'studentNumber' => '88298353',
-					'email' => 'aulisg@gmail.com',
-					'password' => bcrypt('jaffamies')
-					)
-				);
+				//create  1st year students
+				for ($i=0; $i < 10; $i++) {
 
 
 
+					User::create(
+					array(
+						'firstName' => $faker->firstNameMale ,
+						'lastName'=>  $faker->lastName,
+						'telephone'=> '343434343',
+						'address' => $faker->address,
+						'studentNumber' => 1000 + $i,
+						'email' => $faker->email,
+						'password' => bcrypt('jaffamies' . '1'),
+						'created_at' =>  Carbon::createFromDate(2014,09,22)->toDateTimeString()
+						)
+					);
+				}
+
+				//create  2nd year students
+				for ($i=0; $i < 10; $i++) {
+
+
+
+					User::create(
+					array(
+						'firstName' => $faker->firstNameFemale,
+						'lastName'=> $faker->lastName,
+						'telephone'=> '343434343',
+						'address' => $faker->address,
+						'studentNumber' => 2000 + $i,
+						'email' => $faker->email,
+						'password' => bcrypt('jaffamies' . '2'),
+						'created_at' =>  Carbon::createFromDate(2013,09,22)->toDateTimeString()
+						)
+					);
+				}
+
+				//create  3rd year students
+				for ($i=0; $i < 10; $i++) {
+
+
+
+					User::create(
+					array(
+						'firstName' => $faker->firstNameMale ,
+						'lastName'=>  $faker->lastName,
+						'telephone'=> '343434343',
+						'address' => $faker->address,
+						'studentNumber' => 3000 + $i,
+						'email' => $faker->email,
+						'password' => bcrypt('jaffamies' . '3'),
+						'created_at' =>  Carbon::createFromDate(2012,09,22)->toDateTimeString()
+						)
+					);
+				}
+
+
+
+
+				//create tutors
 				User::create(
 				array(
 					'firstName' => 'Timo',
@@ -172,6 +140,8 @@ class UserTableSeeder extends Seeder {
 					)
 				);
 
+
+				//create admin
 				User::create(
 				array(
 					'firstName' => 'Yrjö',
