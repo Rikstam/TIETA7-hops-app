@@ -102,7 +102,7 @@ class UserTableSeeder extends Seeder {
 				User::create(
 				array(
 					'firstName' => 'Timo',
-					'lastName'=> 'Tuutor',
+					'lastName'=> 'Tuutori',
 					'telephone'=> '343434343',
 					'address' => 'katu 53',
 					'email' => 'timo.tuutori@gmail.com',
@@ -138,10 +138,22 @@ class UserTableSeeder extends Seeder {
 				User::create(
 				array(
 					'firstName' => 'Teppo',
-					'lastName'=> 'Tuutor',
+					'lastName'=> 'Tuutori',
 					'telephone'=> '343434343',
 					'address' => 'katu 53',
 					'email' => 'teppo.tuutori@gmail.com',
+					'password' => bcrypt('jaffamies'),
+					'role'		=> 'teacher-tutor'
+					)
+				);
+
+				User::create(
+				array(
+					'firstName' => 'Teuvo',
+					'lastName'=> 'Tuutori',
+					'telephone'=> '343434343',
+					'address' => 'katu 53',
+					'email' => 'teuvo.tuutori@gmail.com',
 					'password' => bcrypt('jaffamies'),
 					'role'		=> 'teacher-tutor'
 					)
