@@ -11,6 +11,18 @@
 @endif
 
 <h2>Opiskelijan tiedot</h2>
+
+<h4>Opettajatuutor</h4>
+
+<p>
+  @if($tutor)
+  {{$tutor->firstName}} {{$tutor->lastName}} {{$tutor->email}}
+  @else
+  Ei tuutoria
+  @endif
+</p>
+
+
 <table class = "table">
   <thead>
     <tr>

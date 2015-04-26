@@ -39,6 +39,11 @@ class HomeController extends Controller {
 	public function index()
 	{
 		$student = Auth::user();//->with('studyplans.studymodules')->get();
+		$tutor = null;
+
+			if ($student->tutor_id) {
+				$tutor = User::findOrFail($student->tutor_id);
+			}
 
 
 
@@ -68,9 +73,9 @@ class HomeController extends Controller {
 
 			}
 
-			
 
-		return view('home.student', compact('student', 'student_data', 'currentYear'));
+
+		return view('home.student', compact('student','tutor', 'student_data', 'currentYear'));
 
 
 
