@@ -49,8 +49,6 @@ class StudyPlansController extends Controller {
 
 		}
 
-		$numberOfAutumnInputs = 2;
-		$numberOfSpringInputs = 2;
 
 		$academicYears = [
 			'2014-2015' => '2014 - 2015',
@@ -60,16 +58,6 @@ class StudyPlansController extends Controller {
 			'2018-2019' => '2018 - 2019'
 		];
 
-		$creditsAmounts = [0.5];
-
-		for ($i=1; $i<11; $i++){
-			array_push($creditsAmounts, $i);
-			array_push($creditsAmounts, $i + 0.5);
-		}
-
-
-
-
 		$subjects = [
 			'Tietojenkäsittelytieteiden tutkinto-ohjelma',
 			'Matematiikan ja tilastotieteen tutkinto-ohjelma',
@@ -77,7 +65,7 @@ class StudyPlansController extends Controller {
 			'Bioteknologian tutkinto-ohjelma'
 		];
 
-			return view('studyplans.create', compact('currentYear','subjects', 'creditsAmounts', 'numberOfAutumnInputs', 'numberOfSpringInputs', 'academicYears', 'existingStudyplans','previousYearStudies' ));
+			return view('studyplans.create', compact('currentYear','subjects', 'academicYears', 'existingStudyplans','previousYearStudies' ));
 
 	}
 

@@ -11559,16 +11559,16 @@ var preFiller = {
 
 var autumnModuleHtml = '<div class = "row autumnModule">\
 <div class = "form-group col-md-4">\
-        <label for="module_name">Opintojakson nimi</label>\
-        <input class="form-control module_name" name="module_name[]" type="text">\
+        <label for="autumn_module_names">Opintojakson nimi</label>\
+        <input class="form-control module_name" name="autumn_module_names[]" type="text">\
       </div>\
       <div class = "form-group col-md-2">\
-        <label for="credits">Opintopisteet</label>\
-        <input type ="number" name = "credits[]" class ="form-control" min="1" max="10" step ="0.5">\
+        <label for="autumn_credits">Opintopisteet</label>\
+        <input type ="number" name = "autumn_credits[]" class ="form-control" min="1" max="10" step ="0.5">\
         </div>\
         <div class = "form-group col-md-5">\
-        <label for="subject">Oppiaine</label>\
-        <select name = "subject[]" class ="form-control subject-select ">\
+        <label for="autumn_subjects">Oppiaine</label>\
+        <select name = "autumn_subjects[]" class ="form-control subject-select ">\
                         <option value="Tietojenk&auml;sittelytieteiden tutkinto-ohjelma">Tietojenk&auml;sittelytieteiden tutkinto-ohjelma</option>\
                         <option value="Matematiikan ja tilastotieteen tutkinto-ohjelma">Matematiikan ja tilastotieteen tutkinto-ohjelma</option>\
                         <option value="Informaatiotutkimuksen ja interaktiivisen median tutkinto-ohjelma">Informaatiotutkimuksen ja interaktiivisen median tutkinto-ohjelma</option>\
@@ -11581,21 +11581,20 @@ var autumnModuleHtml = '<div class = "row autumnModule">\
           <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>\
         </button>\
       </div>\
-<input name="semester_name[]" type="hidden" value="autumn">\
 </div>';
 
 var springModuleHtml = '<div class = "row springModule">\
 <div class = "form-group col-md-4">\
-        <label for="module_name">Opintojakson nimi</label>\
-        <input class="form-control module_name" name="module_name[]" type="text">\
+        <label for="spring_module_names">Opintojakson nimi</label>\
+        <input class="form-control module_name" name="spring_module_names[]" type="text">\
       </div>\
       <div class = "form-group col-md-2">\
-        <label for="credits">Opintopisteet</label>\
-        <input type ="number" name = "credits[]" class ="form-control" min="1" max="10" step ="0.5">\
+        <label for="spring_credits">Opintopisteet</label>\
+        <input type ="number" name = "spring_credits[]" class ="form-control" min="1" max="10" step ="0.5">\
         </div>\
         <div class = "form-group col-md-5">\
-        <label for="subject">Oppiaine</label>\
-        <select name = "subject[]" class ="form-control subject-select ">\
+        <label for="spring_subjects">Oppiaine</label>\
+        <select name = "spring_subjects[]" class ="form-control subject-select ">\
                         <option value="Tietojenk&auml;sittelytieteiden tutkinto-ohjelma">Tietojenk&auml;sittelytieteiden tutkinto-ohjelma</option>\
                         <option value="Matematiikan ja tilastotieteen tutkinto-ohjelma">Matematiikan ja tilastotieteen tutkinto-ohjelma</option>\
                         <option value="Informaatiotutkimuksen ja interaktiivisen median tutkinto-ohjelma">Informaatiotutkimuksen ja interaktiivisen median tutkinto-ohjelma</option>\
@@ -11608,7 +11607,6 @@ var springModuleHtml = '<div class = "row springModule">\
           <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>\
         </button>\
       </div>\
-<input name="semester_name[]" type="hidden" value="spring">\
 </div>';
 
 $(document).ready(function(){

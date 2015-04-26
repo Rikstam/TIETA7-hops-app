@@ -50,23 +50,23 @@
     <div class = "row autumnModule">
 
       <div class = "form-group col-md-4">
-        {!! Form::label('module_name', 'Opintojakson nimi') !!}
-        {!! Form::text('module_name', null, ['class'=>'form-control module_name']) !!}
+        {!! Form::label('autumn_module_names', 'Opintojakson nimi') !!}
+        {!! Form::text('autumn_module_names[0]', null, ['class'=>'form-control module_name']) !!}
       </div>
 
       <div class = "form-group col-md-2">
-        {!! Form::label('credits', 'Opintopisteet') !!}
+        {!! Form::label('autumn_credits', 'Opintopisteet') !!}
 
-        <input type ="number" name = "credits" class ="form-control" value = "1" min="1" max="10" step ="0.5">
+        <input type ="number" name = "autumn_credits[0]" class ="form-control" value = "1" min="1" max="10" step ="0.5">
 
 
 
       </div>
 
       <div class = "form-group col-md-5">
-        {!! Form::label('subject', 'Oppiaine') !!}
+        {!! Form::label('autumn_subjects', 'Oppiaine') !!}
 
-        <select name = "subject" class ="form-control subject-select ">
+        <select name = "autumn_subjects[0]" class ="form-control subject-select ">
             @foreach($subjects as $subject)
             <option value="{{ $subject }}">{{ $subject }}</option>
             @endforeach
@@ -80,7 +80,6 @@
 
       </div>
 
-        {!! Form::input('hidden','semester_name','autumn') !!}
 
 
     </div>
@@ -105,22 +104,22 @@
   <div class = "row springModule">
 
     <div class = "form-group col-md-4">
-      {!! Form::label('module_name', 'Opintojakson nimi') !!}
-      {!! Form::text('module_name', null, ['class'=>'form-control module_name']) !!}
+      {!! Form::label('spring_module_names', 'Opintojakson nimi') !!}
+      {!! Form::text('spring_module_names[0]', null, ['class'=>'form-control module_name']) !!}
     </div>
 
     <div class = "form-group col-md-2">
-      {!! Form::label('credits', 'Opintopisteet') !!}
+      {!! Form::label('spring_credits', 'Opintopisteet') !!}
 
-      <input type ="number" name = "credits" class ="form-control" value = "1" min="1" max="10" step ="0.5">
+      <input type ="number" name = "spring_credits[0]" class ="form-control" value="1" min="1" max="10" step ="0.5">
 
 
 
     </div>
 
     <div class = "form-group col-md-5">
-      {!! Form::label('subject', 'Oppiaine') !!}
-      <select name = "subject" class ="form-control subject-select">
+      {!! Form::label('spring_subjects', 'Oppiaine') !!}
+      <select name = "spring_subjects[0]" class ="form-control subject-select">
 
           @foreach($subjects as $subject)
           <option value="{{ $subject }}">{{ $subject }}</option>
@@ -135,7 +134,6 @@
     </div>
 
   </div>
-  {!! Form::input('hidden','semester_name','spring') !!}
 
 </section>
   <hr>
