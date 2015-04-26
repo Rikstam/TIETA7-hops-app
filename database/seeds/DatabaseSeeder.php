@@ -45,7 +45,7 @@ class UserTableSeeder extends Seeder {
 						'telephone'=> '343434343',
 						'address' => $faker->address,
 						'studentNumber' => 1000 + $i,
-						'email' => 	$firstname . '.' . $lastname . $email_extension ,
+						'email' => 	strtolower($firstname) . '.' . strtolower($lastname) . $email_extension ,
 						'password' => bcrypt('jaffamies' . '1'),
 						'created_at' =>  Carbon::createFromDate(2014, 9 , 11)->toDateTimeString()
 						)
@@ -66,7 +66,7 @@ class UserTableSeeder extends Seeder {
 						'telephone'=> '343434343',
 						'address' => $faker->address,
 						'studentNumber' => 2000 + $i,
-						'email' => 	$firstname . '.' . $lastname . $email_extension ,
+						'email' => 	strtolower($firstname) . '.' . strtolower($lastname) . $email_extension ,
 						'password' => bcrypt('jaffamies' . '2'),
 						'created_at' =>  Carbon::createFromDate(2013,9,22)->toDateTimeString()
 						)
@@ -88,7 +88,7 @@ class UserTableSeeder extends Seeder {
 						'telephone'=> '343434343',
 						'address' => $faker->address,
 						'studentNumber' => 3000 + $i,
-						'email' => 	$firstname . '.' . $lastname . $email_extension ,
+						'email' => 	strtolower($firstname) . '.' . strtolower($lastname) . $email_extension ,
 						'password' => bcrypt('jaffamies' . '3'),
 						'created_at' =>  Carbon::createFromDate(2012,9,22)->toDateTimeString()
 						)

@@ -20,6 +20,12 @@
 
       <h2>Opiskelijan tiedot</h2>
 
+
+			<h3>
+				Opintovuosi: {{ $student->year }}
+			</h3>
+
+			<hr>
       @if (Session::has('flash_message'))
       <div class ="large-12 columns">
         <div role="alert" class="alert-dismissible alert alert-success">
@@ -31,6 +37,8 @@
       </div>
       @endif
 
+
+			<h3>Muokkaa henkilötietoja</h3>
       {!! Form::open(['method'=> 'PATCH', 'url' => 'user/' . $student->id, 'class' => 'form-horizontal' ]) !!}
 
       <div class="form-group">
@@ -141,6 +149,7 @@
 
       {!! Form::close() !!}
 
+			<hr>
 </div>
 </div>
 

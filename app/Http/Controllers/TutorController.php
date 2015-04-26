@@ -23,17 +23,27 @@ class TutorController extends Controller {
 	{
 		$user =  Auth::user();
 
-		$students = $this->getTutorsStudents($user);
-		//return $students;
+		$students = User::Students()->where('tutor_id', '=', $user->id )->orderBy('lastName', 'asc')->orderBy('firstName', 'asc')->get();
+
+		$students->each(function($student){
+			$student->year = $student->currentStudyYear();
+		});
+
+
 		return view('home.tutor', compact('user', 'students'));
 	}
 
 	public function show($id)
 	{
 
-		$user= User::findOrfail($id);
+		$user = User::findOrfail($id);
 
 		$students = $this->getTutorsStudents( $user);
+
+		//TODO DRY this functionality
+		$students->each(function($student){
+			$student->year = $student->currentStudyYear();
+		});
 
 		dd($students);
 		//return view('admin.tutor', compact('user', 'students'));

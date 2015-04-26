@@ -100,6 +100,8 @@ class UsersController extends Controller {
 		$user = Auth::user();
 		$student =  User::findOrFail($id);
 
+		$student->year = $student->currentStudyYear();
+
 
 		//TODO DRY this is duplicated in HomeController@index
 		$student_data  = $student->studyplans()->with('studymodules')->get();

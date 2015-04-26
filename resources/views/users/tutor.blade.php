@@ -56,6 +56,9 @@ Sähköposti
 <thead>
   <tr>
     <th>
+      Aloitusvuosi
+    </th>
+    <th>
       Nimi
     </th>
 
@@ -70,8 +73,12 @@ Sähköposti
 </thead>
 @foreach ($students as $student)
 
-  @if ($student->studyplans == 0)
+  @if ($student->year == 1)
   <tr>
+    <td>
+      {{$student->created_at->year}}
+    </td>
+
     <td>
       {{$student->firstName}} {{$student->lastName}}
     </td>
@@ -103,6 +110,9 @@ Sähköposti
 <thead>
   <tr>
     <th>
+      Aloitusvuosi
+    </th>
+    <th>
       Nimi
     </th>
 
@@ -117,8 +127,13 @@ Sähköposti
 </thead>
 @foreach ($students as $student)
 
-  @if ($student->studyplans == 1)
+  @if ($student->year == 2)
   <tr>
+
+    <td>
+      {{$student->created_at->year}}
+    </td>
+
     <td>
       {{$student->firstName}} {{$student->lastName}}
     </td>
@@ -132,7 +147,7 @@ Sähköposti
     </td>
 
     <td>
-      <a class = "btn btn-primary" href="{{ action('UsersController@show',[$student->id]) }}">Tarkastele / muokkaa tietoja</a>
+      <a class = "btn btn-primary" href="{{ action('UsersController@edit',[$student->id]) }}">Tarkastele / muokkaa tietoja</a>
     </td>
   </tr>
 
@@ -148,6 +163,9 @@ Sähköposti
 <thead>
   <tr>
     <th>
+      Aloitusvuosi
+    </th>
+    <th>
       Nimi
     </th>
 
@@ -162,8 +180,13 @@ Sähköposti
 </thead>
 @foreach ($students as $student)
 
-  @if ($student->studyplans == 2 || $student->studyplans == 3)
+  @if ($student->year == 3)
   <tr>
+
+    <td>
+      {{$student->created_at->year}}
+    </td>
+
     <td>
       {{$student->firstName}} {{$student->lastName}}
     </td>
@@ -177,7 +200,7 @@ Sähköposti
     </td>
 
     <td>
-      <a class = "btn btn-primary" href="profile/{{$student->id}}">Tarkastele / muokkaa tietoja</a>
+      <a class = "btn btn-primary" href="{{ action('UsersController@edit',[$student->id]) }}">Tarkastele / muokkaa tietoja</a>
     </td>
   </tr>
 
