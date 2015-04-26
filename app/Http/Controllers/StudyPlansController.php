@@ -86,18 +86,19 @@ class StudyPlansController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(Requests\CreateStudyPlanRequest $request)
 	{
-		$input = $request->all();
 
-		$user = Auth::user();
 
 		//TODO replace these with proper validations
 
-		//$this->validate($request,[
-		//
-	//	]);
 
+
+		$input = $request->all();
+
+		return $input;
+
+		$user = Auth::user();
 
 		$positiveFeedback = isset($input['positive_feedback']) ? $input['positive_feedback'] : null;
 		$negativeFeedback = isset($input['negative_feedback']) ? $input['negative_feedback'] : null;

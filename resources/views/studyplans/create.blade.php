@@ -16,6 +16,19 @@
 
   <div class ="col-md-10 col-md-offset-1">
 
+    @if ($errors->any())
+
+      <ul class = "alert alert-danger">
+
+        @foreach ($errors->all() as $error)
+
+        <li>{{$error}}</li>
+
+        @endforeach
+      </ul>
+
+    @endif
+
   {!! Form::model($studyplan = new \App\Studyplan, ['url'=>'studyplans'])!!}
     <div class = "row">
 
@@ -38,13 +51,13 @@
 
       <div class = "form-group col-md-4">
         {!! Form::label('module_name', 'Opintojakson nimi') !!}
-        {!! Form::text('module_name[]', null, ['class'=>'form-control module_name']) !!}
+        {!! Form::text('module_name', null, ['class'=>'form-control module_name']) !!}
       </div>
 
       <div class = "form-group col-md-2">
         {!! Form::label('credits', 'Opintopisteet') !!}
 
-        <input type ="number" name = "credits[]" class ="form-control" min="1" max="10" step ="0.5">
+        <input type ="number" name = "credits" class ="form-control" value = "1" min="1" max="10" step ="0.5">
 
 
 
@@ -53,7 +66,7 @@
       <div class = "form-group col-md-5">
         {!! Form::label('subject', 'Oppiaine') !!}
 
-        <select name = "subject[]" class ="form-control subject-select ">
+        <select name = "subject" class ="form-control subject-select ">
             @foreach($subjects as $subject)
             <option value="{{ $subject }}">{{ $subject }}</option>
             @endforeach
@@ -67,7 +80,7 @@
 
       </div>
 
-        {!! Form::input('hidden','semester_name[]','autumn') !!}
+        {!! Form::input('hidden','semester_name','autumn') !!}
 
 
     </div>
@@ -93,13 +106,13 @@
 
     <div class = "form-group col-md-4">
       {!! Form::label('module_name', 'Opintojakson nimi') !!}
-      {!! Form::text('module_name[]', null, ['class'=>'form-control module_name']) !!}
+      {!! Form::text('module_name', null, ['class'=>'form-control module_name']) !!}
     </div>
 
     <div class = "form-group col-md-2">
       {!! Form::label('credits', 'Opintopisteet') !!}
 
-      <input type ="number" name = "credits[]" class ="form-control" min="1" max="10" step ="0.5">
+      <input type ="number" name = "credits" class ="form-control" value = "1" min="1" max="10" step ="0.5">
 
 
 
@@ -107,7 +120,7 @@
 
     <div class = "form-group col-md-5">
       {!! Form::label('subject', 'Oppiaine') !!}
-      <select name = "subject[]" class ="form-control subject-select">
+      <select name = "subject" class ="form-control subject-select">
 
           @foreach($subjects as $subject)
           <option value="{{ $subject }}">{{ $subject }}</option>
@@ -122,7 +135,7 @@
     </div>
 
   </div>
-  {!! Form::input('hidden','semester_name[]','spring') !!}
+  {!! Form::input('hidden','semester_name','spring') !!}
 
 </section>
   <hr>
@@ -278,7 +291,7 @@
   </p>
 </div>
 
-  {!! Form::input('hidden', 'user_id', 1)!!}
+
 
   <a href="/home" class = "btn btn-info">Peruuta</a>
 
