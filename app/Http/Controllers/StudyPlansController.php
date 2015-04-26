@@ -78,13 +78,9 @@ class StudyPlansController extends Controller {
 	{
 
 
-		//TODO replace these with proper validations
-
-
+		//TODO tidy up some more
 
 		$input = $request->all();
-
-		return $input;
 
 		$user = Auth::user();
 
@@ -123,31 +119,41 @@ class StudyPlansController extends Controller {
 		// get years from academic year string
 		$semesterYears = explode('-', $studyPlan->academic_year);
 
-		$modules = array(
-			'names'=>$input['module_name'],
-			'credits'=>$input['credits'],
-			'subjects'=>$input['subject'],
-			'semesters'=>$input['semester_name']
+		$autumn_modules = array(
+			'names'=>$input['autumn_module_names'],
+			'credits'=>$input['autumn_credits'],
+			'subjects'=>$input['autumn_subjects']
 			);
 
-		$moduleCount = count($modules['names']);
+		$spring_modules = array(
+				'names'=>$input['spring_module_names'],
+				'credits'=>$input['spring_credits'],
+				'subjects'=>$input['spring_subjects']
+		);
+		$numberOfAutumnModules = count($autumn_modules['names']);
+
+		$numberOfSpringModules = count($spring_modules['names']);
 
 
-		//return $input;
+
+
 		$studyPlan = $user->studyplans()->save($studyPlan);
 
 		$allStudyModules = [];
 
-		for($i = 0; $i < $moduleCount; $i++) {
+		//dd($autumn_modules);
+
+
+		for($i = 0; $i < $numberOfAutumnModules; $i++) {
 
 			array_push(	$allStudyModules, new Studymodule(
 				array(
 
-					'module_name' => $modules['names'][$i],
-					'credits' => $modules['credits'][$i],
-					'subject' => $modules['subjects'][$i],
-					'semester_name' => $modules['semesters'][$i],
-					'semester_year' => $modules['semesters'][$i] == 'autumn' ? $semesterYears[0] : $semesterYears[1],
+					'module_name' => $autumn_modules['names'][$i],
+					'credits' => $autumn_modules['credits'][$i],
+					'subject' => $autumn_modules['subjects'][$i],
+					'semester_name' => 'autumn',
+					'semester_year' => $semesterYears[0]
 
 					)
 				)
@@ -155,11 +161,32 @@ class StudyPlansController extends Controller {
 
 		}
 
+		for($i = 0; $i < $numberOfSpringModules; $i++) {
+
+			array_push(	$allStudyModules, new Studymodule(
+				array(
+
+					'module_name' => $spring_modules['names'][$i],
+					'credits' => $spring_modules['credits'][$i],
+					'subject' => $spring_modules['subjects'][$i],
+					'semester_name' => 'spring',
+					'semester_year' => $semesterYears[1]
+
+					)
+				)
+			);
+
+		}
+
+
 		//dd($allStudyModules);
 
 		$studyPlan->studymodules()->saveMany($allStudyModules);
 	//	return $input;
-		return redirect('home');
+		return redirect('home')->with([
+			'flash_message' => 'Tiedot päivitetty! Kiitos yhteistyöstä!
+			Tämä lomake ja opettajatuutorointi on erityisesti suunniteltu palvelemaan Sinun tulevaisuuttasi!'
+			]);
 	}
 
 	/**

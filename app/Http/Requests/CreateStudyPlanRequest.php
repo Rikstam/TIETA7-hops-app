@@ -21,9 +21,7 @@ class CreateStudyPlanRequest extends Request {
 	 */
 	public function rules()
 	{
-		$rules = [
-			'interest_in_own_field' => 'required'
-		];
+		$rules = [];
 
 		//autumn study module validations
 		foreach($this->request->get('autumn_module_names') as $key => $val)
@@ -65,7 +63,7 @@ class CreateStudyPlanRequest extends Request {
   {
     $messages = [];
 
-		$messages['interest_in_own_field.required'] = 'Oman alan kiinnostus on pakollinen tieto';
+		//$messages['interest_in_own_field.required'] = 'Oman alan kiinnostus on pakollinen tieto';
 
 		foreach($this->request->get('autumn_module_names') as $key => $val)
     {

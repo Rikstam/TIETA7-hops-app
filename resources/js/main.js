@@ -6,7 +6,7 @@ var autumnModuleHtml = '<div class = "row autumnModule">\
       </div>\
       <div class = "form-group col-md-2">\
         <label for="autumn_credits">Opintopisteet</label>\
-        <input type ="number" name = "autumn_credits[]" class ="form-control" min="1" max="10" step ="0.5">\
+        <input type ="number" name = "autumn_credits[]" class ="form-control" value="1" min="1" max="10" step ="0.5">\
         </div>\
         <div class = "form-group col-md-5">\
         <label for="autumn_subjects">Oppiaine</label>\
@@ -32,7 +32,7 @@ var springModuleHtml = '<div class = "row springModule">\
       </div>\
       <div class = "form-group col-md-2">\
         <label for="spring_credits">Opintopisteet</label>\
-        <input type ="number" name = "spring_credits[]" class ="form-control" min="1" max="10" step ="0.5">\
+        <input type ="number" name = "spring_credits[]" class ="form-control" value="1" min="1" max="10" step ="0.5">\
         </div>\
         <div class = "form-group col-md-5">\
         <label for="spring_subjects">Oppiaine</label>\

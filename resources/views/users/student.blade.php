@@ -1,3 +1,15 @@
+
+@if (Session::has('flash_message'))
+<div class ="">
+  <div role="alert" class="alert-dismissible alert alert-success">
+    {{Session::get('flash_message')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Sulje">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+@endif
+
 <h2>Opiskelijan tiedot</h2>
 <table class = "table">
   <thead>

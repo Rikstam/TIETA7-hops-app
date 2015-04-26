@@ -283,11 +283,7 @@
     </div>
   </div>
 
-<div id = "form-bottom-notice" class="alert alert-info" role="alert">
-  <p>
-    Kiitos yhteistyöstä! Tämä lomake ja opettajatuutorointi on erityisesti suunniteltu palvelemaan Sinun tulevaisuuttasi!
-  </p>
-</div>
+
 
 
 
